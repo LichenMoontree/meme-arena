@@ -14,6 +14,12 @@ function hideMsg() {
   msg.textContent = '';
 }
 
+// ✅ Guard: if already logged in, send away
+const { data: sessionData } = await supabase.auth.getSession();
+if (sessionData.session) {
+  window.location.href = '/src/pages/home/index.html';
+}
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   hideMsg();
