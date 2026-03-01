@@ -7,18 +7,25 @@
   </head>
 
   <body>
-    <nav>
-      <a href="/src/pages/home/index.html">Home</a>
-      <a href="/src/pages/login/index.html">Login</a>
-      <a href="/src/pages/register/index.html">Register</a>
-      <a href="/src/pages/upload/index.html">Upload</a>
-      <a href="/src/pages/my-memes/index.html">My Memes</a>
-      <a href="/src/pages/admin/index.html">Admin</a>
+    <nav class="p-3 border-bottom">
+      <a class="me-3" href="/src/pages/home/index.html">Home</a>
+      <a class="me-3" href="/src/pages/login/index.html">Login</a>
+      <a class="me-3" href="/src/pages/register/index.html">Register</a>
+      <a class="me-3" href="/src/pages/upload/index.html">Upload</a>
+      <a class="me-3" href="/src/pages/my-memes/index.html">My Memes</a>
+      <a class="me-3" href="/src/pages/admin/index.html">Admin</a>
     </nav>
 
-    <main>
-      <h1>Meme Arena</h1>
-      <p>Home feed will be here later.</p>
+    <main class="container py-4">
+      <h1 class="display-4 text-primary">Meme Arena</h1>
+      <p class="lead">Home feed will be here later.</p>
+
+      <button class="btn btn-primary">Bootstrap button test</button>
+      <button class="btn btn-outline-secondary ms-2">Secondary</button>
+
+      <div class="alert alert-success mt-4" role="alert">
+        If this looks green and styled, Bootstrap is working.
+      </div>
     </main>
 
     <script type="module" src="./page.js"></script>
