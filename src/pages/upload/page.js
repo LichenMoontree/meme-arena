@@ -1,82 +1,73 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { supabase } from '../../services/supabaseClient.js';
 
-console.log('Upload page loaded');
-
 const form = document.getElementById('uploadForm');
 const msg = document.getElementById('msg');
 
 function showMsg(type, text) {
-  // type: 'success' | 'danger' | 'warning' | 'info'
   msg.className = `alert alert-${type}`;
   msg.textContent = text;
   msg.classList.remove('d-none');
 }
-
 function hideMsg() {
   msg.classList.add('d-none');
   msg.textContent = '';
 }
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  hideMsg();
+// ✅ Guard: must be logged in
+const { data: sessionData, error: sessionErr } = await supabase.auth.getSession();
+if (sessionErr) {
+  console.error(sessionErr);
+  showMsg('danger', 'Auth error. Check console.');
+} else if (!sessionData.session) {
+  showMsg('info', 'Please login first. Redirecting…');
+  setTimeout(() => (window.location.href = '/src/pages/login/index.html'), 2000);
+  // Stop here (don’t attach submit handler)
+} else {
+  // Logged in: enable upload
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideMsg();
 
-  const title = document.getElementById('title').value.trim();
-  const file = document.getElementById('file').files[0];
+    const title = document.getElementById('title').value.trim();
+    const file = document.getElementById('file').files[0];
 
-  if (!title || !file) {
-    showMsg('warning', 'Title and image are required.');
-    return;
-  }
+    if (!title || !file) {
+      showMsg('warning', 'Title and image are required.');
+      return;
+    }
 
-  // Auth check (no session = not logged in)
-  const { data: sessionData, error: sessionErr } = await supabase.auth.getSession();
-  if (sessionErr) {
-    console.error(sessionErr);
-    showMsg('danger', 'Auth error. Check console.');
-    return;
-  }
+    const userId = sessionData.session.user.id;
 
-  const session = sessionData.session;
-  if (!session) {
-    showMsg('info', 'Please login first. Redirecting…');
-    setTimeout(() => (window.location.href = '/src/pages/login/index.html'), 700);
-    return;
-  }
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const oldBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Uploading…';
 
-  const userId = session.user.id;
+    try {
+      const ext = (file.name.split('.').pop() || 'png').toLowerCase();
+      const safeExt = ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext) ? ext : 'png';
+      const path = `${userId}/${crypto.randomUUID()}.${safeExt}`;
 
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const oldBtnText = submitBtn.textContent;
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Uploading…';
+      const { error: upErr } = await supabase.storage.from('memes').upload(path, file, {
+        cacheControl: '3600',
+        upsert: false,
+      });
+      if (upErr) throw upErr;
 
-  try {
-    // 1) Upload file to Storage bucket "memes"
-    const ext = (file.name.split('.').pop() || 'png').toLowerCase();
-    const safeExt = ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext) ? ext : 'png';
-    const path = `${userId}/${crypto.randomUUID()}.${safeExt}`;
+      const { error: dbErr } = await supabase.from('memes').insert([
+        { owner_id: userId, title, image_path: path, status: 'pending' },
+      ]);
+      if (dbErr) throw dbErr;
 
-    const { error: upErr } = await supabase.storage.from('memes').upload(path, file, {
-      cacheControl: '3600',
-      upsert: false,
-    });
-    if (upErr) throw upErr;
-
-    // 2) Insert DB record
-    const { error: dbErr } = await supabase.from('memes').insert([
-      { owner_id: userId, title, image_path: path, status: 'pending' },
-    ]);
-    if (dbErr) throw dbErr;
-
-    showMsg('success', 'Uploaded! Meme is pending approval.');
-    form.reset();
-  } catch (err) {
-    console.error(err);
-    showMsg('danger', err.message);
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = oldBtnText;
-  }
-});
+      showMsg('success', 'Uploaded! Meme is pending approval.');
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      showMsg('danger', err.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldBtnText;
+    }
+  });
+}
