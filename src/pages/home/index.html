@@ -17,15 +17,19 @@
     </nav>
 
     <main class="container py-4">
-      <h1 class="display-4 text-primary">Meme Arena</h1>
-      <p class="lead">Home feed will be here later.</p>
-
-      <button class="btn btn-primary">Bootstrap button test</button>
-      <button class="btn btn-outline-secondary ms-2">Secondary</button>
-
-      <div class="alert alert-success mt-4" role="alert">
-        If this looks green and styled, Bootstrap is working.
+      <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
+        <div>
+          <h1 class="display-4 text-primary mb-1">Meme Arena</h1>
+          <p class="lead mb-0">Approved memes show up here.</p>
+        </div>
+        <div class="pt-2">
+          <a class="btn btn-primary" href="/src/pages/upload/index.html">Upload meme</a>
+        </div>
       </div>
+
+      <p id="sbStatus" class="text-muted mt-3 mb-3">Loading…</p>
+
+      <div id="feed" class="row g-3"></div>
     </main>
 
     <script type="module" src="./page.js"></script>
