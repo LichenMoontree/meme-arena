@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { supabase } from '../../services/supabaseClient.js';
+import { renderNav } from '../../services/nav.js';
+
+await renderNav('admin');
 
 const queue = document.getElementById('queue');
 
@@ -10,6 +13,10 @@ function render(html) {
 function publicUrl(path) {
   const { data } = supabase.storage.from('memes').getPublicUrl(path);
   return data.publicUrl;
+}
+
+function escapeHtml(s) {
+  return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
 // 1) Must be logged in
@@ -64,15 +71,10 @@ async function removeMeme(id) {
   if (error) throw error;
 }
 
-function escapeHtml(s) {
-  return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-}
-
 async function bootAdmin() {
   render(`
-    <div class="alert alert-success">Admin access granted ✅</div>
     <div id="msg" class="alert d-none" role="alert"></div>
-    <h2 class="h4 mt-4">Pending memes</h2>
+    <h2 class="h4 mt-2">Pending memes</h2>
     <div id="pendingList" class="row g-3 mt-1"></div>
   `);
 
@@ -104,7 +106,8 @@ async function bootAdmin() {
         return `
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-              <img src="${img}" class="card-img-top" alt="${escapeHtml(m.title)}" style="max-height:260px;object-fit:cover;" />
+              <img src="${img}" class="card-img-top" alt="${escapeHtml(m.title)}"
+                   style="max-height:260px;object-fit:cover;" />
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">${escapeHtml(m.title)}</h5>
                 <div class="small text-muted mb-3">${new Date(m.created_at).toLocaleString()}</div>
