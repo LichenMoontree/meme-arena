@@ -7,18 +7,14 @@
   </head>
 
   <body>
-    <nav>
-      <a href="/index.html">Home</a>
-      <a href="/src/pages/login/index.html">Login</a>
-      <a href="/src/pages/register/index.html">Register</a>
-      <a href="/src/pages/upload/index.html">Upload</a>
-      <a href="/src/pages/my-memes/index.html">My Memes</a>
-      <a href="/src/pages/admin/index.html">Admin</a>
-    </nav>
+    <nav id="appNav"></nav>
 
-    <main>
-      <h1>My Memes</h1>
-      <div id="myMemes"></div>
+    <main class="container py-4">
+      <h1 class="h3 mb-3">My Memes</h1>
+
+      <div id="msg" class="alert d-none" role="alert"></div>
+
+      <div id="list" class="row g-3"></div>
     </main>
 
     <script type="module" src="./page.js"></script>

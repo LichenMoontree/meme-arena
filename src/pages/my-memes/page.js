@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { supabase } from '../../services/supabaseClient.js';
+import { renderNav } from '../../services/nav.js';
+
+await renderNav('my');
 
 const msg = document.getElementById('msg');
 const list = document.getElementById('list');
@@ -65,7 +68,8 @@ if (sessionErr) {
         return `
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
-              <img src="${img}" class="card-img-top" alt="${escapeHtml(m.title)}" style="max-height:260px;object-fit:cover;" />
+              <img src="${img}" class="card-img-top" alt="${escapeHtml(m.title)}"
+                   style="max-height:260px;object-fit:cover;" />
               <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-start gap-2">
                   <h5 class="card-title mb-0">${escapeHtml(m.title)}</h5>
