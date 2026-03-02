@@ -7,34 +7,24 @@
   </head>
 
   <body>
-    <nav class="p-3 border-bottom">
-      <a class="me-3" href="/src/pages/home/index.html">Home</a>
-      <a class="me-3" href="/src/pages/login/index.html">Login</a>
-      <a class="me-3" href="/src/pages/register/index.html">Register</a>
-      <a class="me-3" href="/src/pages/upload/index.html">Upload</a>
-      <a class="me-3" href="/src/pages/my-memes/index.html">My Memes</a>
-      <a class="me-3" href="/src/pages/admin/index.html">Admin</a>
-    </nav>
+    <!-- shared nav placeholder -->
+    <nav id="appNav"></nav>
 
     <main class="container py-4" style="max-width: 720px">
       <h1 class="h3 mb-3">Upload Meme</h1>
 
-      <!-- Bootstrap message box (replaces browser alerts) -->
+      <!-- Bootstrap message box -->
       <div id="msg" class="alert d-none" role="alert"></div>
 
       <form id="uploadForm" class="card card-body">
         <label class="form-label">Title</label>
-        <input id="title" class="form-control mb-3" type="text" placeholder="Funny title" required />
+        <input id="title" class="form-control mb-3" type="text" required />
 
         <label class="form-label">Image</label>
         <input id="file" class="form-control mb-3" type="file" accept="image/*" required />
 
         <button class="btn btn-primary" type="submit">Upload</button>
       </form>
-
-      <p class="text-muted mt-3 mb-0">
-        Note: you must be logged in to upload.
-      </p>
     </main>
 
     <script type="module" src="./page.js"></script>
