@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { supabase } from '../../services/supabaseClient.js';
+import { renderNav } from '../../services/nav.js';
+
+await renderNav('');
 
 const params = new URLSearchParams(window.location.search);
 const memeId = params.get('id');
