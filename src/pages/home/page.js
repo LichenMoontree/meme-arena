@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { supabase } from '../../services/supabaseClient.js';
+import { renderNav } from '../../services/nav.js';
+
+await renderNav('home');
 
 const statusEl = document.getElementById('sbStatus');
 const feedEl = document.getElementById('feed');
@@ -65,5 +68,5 @@ try {
   setStatus('Ready.');
 } catch (err) {
   console.error(err);
-  setStatus('Failed to load memes (see console).');
+  setStatus('Failed to load (see console).');
 }
