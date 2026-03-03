@@ -7,35 +7,28 @@
   </head>
 
   <body>
-    <nav>
-      <a href="/index.html">Home</a>
-      <a href="/src/pages/login/index.html">Login</a>
-      <a href="/src/pages/register/index.html">Register</a>
-      <a href="/src/pages/upload/index.html">Upload</a>
-      <a href="/src/pages/my-memes/index.html">My Memes</a>
-      <a href="/src/pages/admin/index.html">Admin</a>
-    </nav>
+    <nav id="appNav"></nav>
 
-    <main>
-      <h1>Register</h1>
+    <main class="container py-4" style="max-width: 520px">
+      <h1 class="h3 mb-3">Register</h1>
 
-      <form id="registerForm">
-        <label>
-          Display name
-          <input id="displayName" type="text" required />
-        </label>
-        <br />
-        <label>
-          Email
-          <input id="email" type="email" required />
-        </label>
-        <br />
-        <label>
-          Password
-          <input id="password" type="password" required />
-        </label>
-        <br />
-        <button type="submit">Create account</button>
+      <div id="msg" class="alert d-none" role="alert"></div>
+
+      <form id="registerForm" class="card card-body">
+        <label class="form-label">Display name</label>
+        <input id="displayName" class="form-control mb-3" type="text" required />
+
+        <label class="form-label">Email</label>
+        <input id="email" class="form-control mb-3" type="email" required />
+
+        <label class="form-label">Password</label>
+        <input id="password" class="form-control mb-3" type="password" required />
+
+        <button class="btn btn-primary" type="submit">Create account</button>
+
+        <p class="text-muted mt-3 mb-0">
+          Already have an account? <a href="/src/pages/login/index.html">Login</a>
+        </p>
       </form>
     </main>
 

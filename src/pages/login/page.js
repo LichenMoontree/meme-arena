@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { supabase } from '../../services/supabaseClient.js';
+import { renderNav } from '../../services/nav.js';
+
+await renderNav('');
 
 const form = document.getElementById('loginForm');
 const msg = document.getElementById('msg');
@@ -14,7 +17,7 @@ function hideMsg() {
   msg.textContent = '';
 }
 
-// ✅ Guard: if already logged in, send away
+// Guard: if already logged in, redirect away
 const { data: sessionData } = await supabase.auth.getSession();
 if (sessionData.session) {
   window.location.href = '/src/pages/home/index.html';
@@ -38,7 +41,7 @@ form.addEventListener('submit', async (e) => {
 
     showMsg(
       'success',
-      `Logged in! <a class="btn btn-success btn-sm ms-2" href="/src/pages/upload/index.html">Continue</a>`
+      `Logged in! <a class="btn btn-success btn-sm ms-2" href="/src/pages/home/index.html">Continue</a>`
     );
   } catch (err) {
     console.error(err);
