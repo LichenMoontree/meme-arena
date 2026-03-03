@@ -10,19 +10,35 @@
     <nav id="appNav"></nav>
 
     <main class="container py-4">
-      <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
-        <div>
-          <h1 class="display-4 text-primary mb-1">Meme Arena</h1>
-          <p class="lead mb-0">Approved memes show up here.</p>
+      <!-- HERO -->
+      <section class="p-4 p-md-5 mb-4 rounded-4 border" style="background: rgba(255,255,255,0.70); border-color: rgba(34,24,28,0.10) !important;">
+        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+          <div>
+            <h1 class="display-5 m-0" style="font-weight: 900;">Drop your funniest meme 👀</h1>
+            <p class="mt-2 mb-0 text-muted">
+              Upload → wait for approval → flex on the feed.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge rounded-pill" style="background: rgba(89,201,165,0.18); color: #22181C;">✅ Approved feed</span>
+              <span class="badge rounded-pill" style="background: rgba(239,98,108,0.12); color: #22181C;">🧑‍⚖️ Admin moderation</span>
+              <span class="badge rounded-pill" style="background: rgba(34,24,28,0.06); color: #22181C;">💬 Comments + votes</span>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <a class="btn btn-primary px-4" href="/src/pages/upload/index.html">Upload meme</a>
+            <a class="btn btn-outline-primary px-4" href="#feedSection">Browse</a>
+          </div>
         </div>
-        <div class="pt-2">
-          <a class="btn btn-primary" href="/src/pages/upload/index.html">Upload meme</a>
-        </div>
+      </section>
+
+      <p id="sbStatus" class="text-muted mb-3">Loading…</p>
+
+      <div id="feedSection">
+        <h2 class="h5 mb-3" id="feedTitle">Approved memes</h2>
+        <div id="feed" class="row g-3"></div>
       </div>
-
-      <p id="sbStatus" class="text-muted mt-3 mb-3">Loading…</p>
-
-      <div id="feed" class="row g-3"></div>
     </main>
 
     <script type="module" src="./page.js"></script>
