@@ -1,0 +1,110 @@
+/* src/styles/theme.css */
+
+/* Playful palette */
+:root {
+  --ma-bg1: #fff7f0;
+  --ma-bg2: #f3f7ff;
+  --ma-ink: #1f2a37;
+  --ma-muted: #6b7280;
+
+  --ma-pink: #ff4d8d;
+  --ma-purple: #7c3aed;
+  --ma-blue: #2563eb;
+  --ma-mint: #34d399;
+  --ma-sun: #f59e0b;
+}
+
+/* Soft fun background */
+body {
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(255, 77, 141, 0.12), transparent 60%),
+    radial-gradient(1000px 500px at 90% 20%, rgba(124, 58, 237, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 30% 90%, rgba(37, 99, 235, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--ma-bg1), var(--ma-bg2));
+  color: var(--ma-ink);
+}
+
+/* Make Bootstrap feel more “toy-like” */
+.container {
+  max-width: 1100px;
+}
+
+/* Nav styling */
+#appNav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid rgba(31, 42, 55, 0.08);
+}
+
+.ma-brand {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.ma-pill {
+  border-radius: 999px !important;
+}
+
+.ma-link {
+  text-decoration: none;
+}
+
+/* Cards: more playful, hover pop */
+.card {
+  border: 1px solid rgba(31, 42, 55, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(31, 42, 55, 0.06);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 14px 30px rgba(31, 42, 55, 0.10);
+}
+
+/* Buttons: slightly chunkier */
+.btn {
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--ma-blue), var(--ma-purple));
+  border: none;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--ma-mint), #10b981);
+  border: none;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #fb7185, #ef4444);
+  border: none;
+}
+
+.btn-outline-primary {
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+/* Alerts: softer */
+.alert {
+  border-radius: 16px;
+  border: 1px solid rgba(31, 42, 55, 0.08);
+}
+
+/* Headings: a little more “poster-like” */
+.display-4 {
+  font-weight: 900;
+  letter-spacing: -0.8px;
+}
+
+/* Meme images: keep nice framing */
+.card-img-top,
+img.img-fluid {
+  background: rgba(255, 255, 255, 0.6);
+}
