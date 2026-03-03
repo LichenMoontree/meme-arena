@@ -111,8 +111,7 @@ body{
   color: rgba(255,255,255,0.70) !important;
 }
 
-/* ✅ IMPORTANT: DO NOT globally override Bootstrap outline buttons.
-   Only style buttons inside the black navbar. */
+/* IMPORTANT: Only style buttons inside the black navbar */
 #appNav .btn{
   border-radius: 14px;
   font-weight: 900;
@@ -143,8 +142,7 @@ body{
   color: #ffffff;
 }
 
-/* ✅ Global buttons (for white pages) — keep Bootstrap defaults,
-   but add only subtle rounding + weight. */
+/* Global buttons: keep Bootstrap behavior, just add rounding + weight */
 .btn{
   border-radius: 14px;
   font-weight: 900;
@@ -173,20 +171,34 @@ body{
   border: 2px solid rgba(15,15,16,0.14);
 }
 
-/* hero helpers */
+/* hero container */
 .ma-hero{
   border: 2px solid rgba(15,15,16,0.18);
   border-radius: 22px;
   background: rgba(255,255,255,0.96);
   box-shadow: 8px 8px 0 rgba(15,15,16,0.10);
 }
-.ma-hero-blob{
-  border: 2px solid rgba(15,15,16,0.14);
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(57,255,20,0.10), rgba(255,43,214,0.08));
+
+/* Optional: badge weight */
+.badge{ font-weight: 800; }
+
+/* ✅ HERO CTA buttons (neon gradient) */
+.ma-cta{
+  background: linear-gradient(90deg, var(--neonG), var(--neonB)) !important;
+  border: 2px solid rgba(15,15,16,0.12) !important;
+  color: #0f0f10 !important;
+  box-shadow: 0 0 18px rgba(57,255,20,0.12), 0 0 14px rgba(0,229,255,0.10);
+}
+.ma-cta:hover{
+  filter: brightness(1.03);
+  transform: translateY(-1px);
 }
 
-/* Optional: make card top chips readable on images if they use badges */
-.badge{
-  font-weight: 800;
+.ma-cta-outline{
+  border: 2px solid rgba(15,15,16,0.18) !important;
+  color: #0f0f10 !important;
+  background: #ffffff !important;
+}
+.ma-cta-outline:hover{
+  background: rgba(15,15,16,0.04) !important;
 }
