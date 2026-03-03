@@ -5,7 +5,6 @@
   --ink:#0f0f10;
   --bg:#fbfbff;
 
-  /* neon accents */
   --neonG:#39ff14;
   --neonP:#ff2bd6;
   --neonB:#00e5ff;
@@ -45,15 +44,14 @@ body{
   background: linear-gradient(90deg, var(--neonG), var(--neonB), var(--neonP));
 }
 
-/* logo */
 .ma-brand{ text-decoration:none; display:inline-flex; align-items:center; }
 
-/* ✅ less “organized” wordmark */
+/* ✅ Messier logo */
 .ma-title{
   font-family:'Rubik Bubbles', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 30px;
+  font-size: 32px;
   line-height: 1;
-  letter-spacing: 0.6px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 
   background: linear-gradient(90deg, var(--neonG), var(--neonP));
@@ -61,15 +59,27 @@ body{
   background-clip:text;
   color: transparent;
 
-  /* outline + chaotic vibe */
-  -webkit-text-stroke: 1px rgba(15,15,16,0.35);
-  transform: rotate(-2deg) skewX(-6deg);
-  filter: drop-shadow(2px 2px 0 rgba(15,15,16,0.10));
+  /* heavier outline + stacked shadows */
+  -webkit-text-stroke: 1.6px rgba(15,15,16,0.45);
 
   text-shadow:
+    2px 2px 0 rgba(15,15,16,0.14),
+    -2px 2px 0 rgba(15,15,16,0.08),
     0 0 10px rgba(57,255,20,0.26),
     0 0 14px rgba(255,43,214,0.22),
-    2px 2px 0 rgba(15,15,16,0.10);
+    0 0 18px rgba(0,229,255,0.16);
+
+  /* sticker wobble */
+  transform: rotate(-3deg) skewX(-10deg);
+  animation: maWobble 3.8s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes maWobble{
+  0%   { transform: rotate(-3deg) skewX(-10deg) translateY(0); }
+  35%  { transform: rotate(-2deg) skewX(-7deg) translateY(-1px); }
+  70%  { transform: rotate(-4deg) skewX(-12deg) translateY(1px); }
+  100% { transform: rotate(-3deg) skewX(-10deg) translateY(0); }
 }
 
 /* nav links */
@@ -91,7 +101,7 @@ body{
   outline: 2px solid rgba(15,15,16,0.18);
 }
 
-/* sticker cards + subtle neon glow hover */
+/* cards + glow hover */
 .card{
   background: var(--card);
   border: 2px solid rgba(15,15,16,0.35);
@@ -109,7 +119,6 @@ body{
     0 0 18px rgba(255,43,214,0.10);
 }
 
-/* buttons */
 .btn{ border-radius: 14px; font-weight: 900; }
 .btn-primary{
   background: linear-gradient(90deg, var(--neonG), var(--neonB));
@@ -119,10 +128,8 @@ body{
 .btn-outline-primary{ border: 2px solid rgba(15,15,16,0.25); }
 .btn-outline-danger{ border-radius: 999px; border: 2px solid rgba(15,15,16,0.25); }
 
-/* alerts */
 .alert{ border-radius: 16px; border: 2px solid rgba(15,15,16,0.18); }
 
-/* hero helpers */
 .ma-hero{
   border: 2px solid rgba(15,15,16,0.25);
   border-radius: 22px;
@@ -135,7 +142,6 @@ body{
   background: linear-gradient(135deg, rgba(57,255,20,0.14), rgba(255,43,214,0.10));
 }
 
-/* Featured ribbon */
 .ma-ribbon{
   position: absolute;
   top: 14px;
