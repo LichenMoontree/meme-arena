@@ -29,7 +29,11 @@ function publicUrl(path) {
   return data.publicUrl;
 }
 
-// ✅ Guard: must be logged in
+function esc(s) {
+  return (s ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
+
+// Guard: must be logged in
 const { data: sessionData, error: sessionErr } = await supabase.auth.getSession();
 if (sessionErr) {
   console.error(sessionErr);
@@ -66,18 +70,20 @@ if (sessionErr) {
       .map((m) => {
         const img = publicUrl(m.image_path);
         return `
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="${img}" class="card-img-top" alt="${escapeHtml(m.title)}"
-                   style="max-height:260px;object-fit:cover;" />
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100">
+              <img src="${img}" class="card-img-top" alt="${esc(m.title)}"
+                   style="height:220px; object-fit:cover;" />
               <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-start gap-2">
-                  <h5 class="card-title mb-0">${escapeHtml(m.title)}</h5>
+                  <h5 class="card-title mb-0">${esc(m.title)}</h5>
                   <span class="badge ${badgeForStatus(m.status)}">${m.status}</span>
                 </div>
+                <div class="small text-muted mt-1">${new Date(m.created_at).toLocaleString()}</div>
+
                 <div class="mt-auto pt-3 d-flex gap-2">
-                  <a class="btn btn-outline-primary btn-sm" href="/src/pages/meme/index.html?id=${m.id}">Open</a>
-                  <button class="btn btn-outline-danger btn-sm" data-del="${m.id}">Delete</button>
+                  <a class="btn btn-outline-primary btn-sm px-3" href="/src/pages/meme/index.html?id=${m.id}">Open</a>
+                  <button class="btn btn-outline-danger btn-sm px-3" data-del="${m.id}">Delete</button>
                 </div>
               </div>
             </div>
@@ -106,10 +112,6 @@ if (sessionErr) {
         }
       });
     });
-  }
-
-  function escapeHtml(s) {
-    return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
   }
 
   async function boot() {

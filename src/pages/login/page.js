@@ -7,9 +7,9 @@ await renderNav('');
 const form = document.getElementById('loginForm');
 const msg = document.getElementById('msg');
 
-function showMsg(type, html) {
+function showMsg(type, text) {
   msg.className = `alert alert-${type}`;
-  msg.innerHTML = html;
+  msg.textContent = text;
   msg.classList.remove('d-none');
 }
 function hideMsg() {
@@ -17,11 +17,8 @@ function hideMsg() {
   msg.textContent = '';
 }
 
-// Guard: if already logged in, redirect away
 const { data: sessionData } = await supabase.auth.getSession();
-if (sessionData.session) {
-  window.location.href = '/src/pages/home/index.html';
-}
+if (sessionData.session) window.location.href = '/src/pages/home/index.html';
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();

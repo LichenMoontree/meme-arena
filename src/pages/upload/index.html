@@ -7,24 +7,28 @@
   </head>
 
   <body>
-    <!-- shared nav placeholder -->
     <nav id="appNav"></nav>
 
-    <main class="container py-4" style="max-width: 720px">
-      <h1 class="h3 mb-3">Upload Meme</h1>
+    <main class="container py-4" style="max-width: 820px">
+      <div class="card p-4">
+        <h1 class="h4 mb-1">Upload Meme</h1>
+        <p class="text-muted mb-3">Drop an image + title. It will go to admin approval.</p>
 
-      <!-- Bootstrap message box -->
-      <div id="msg" class="alert d-none" role="alert"></div>
+        <div id="msg" class="alert d-none" role="alert"></div>
 
-      <form id="uploadForm" class="card card-body">
-        <label class="form-label">Title</label>
-        <input id="title" class="form-control mb-3" type="text" required />
+        <form id="uploadForm" class="mt-2">
+          <label class="form-label">Title</label>
+          <input id="title" class="form-control mb-3" type="text" required />
 
-        <label class="form-label">Image</label>
-        <input id="file" class="form-control mb-3" type="file" accept="image/*" required />
+          <label class="form-label">Image</label>
+          <input id="file" class="form-control mb-3" type="file" accept="image/*" required />
 
-        <button class="btn btn-primary" type="submit">Upload</button>
-      </form>
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary px-4" type="submit">Upload</button>
+            <a class="btn btn-outline-primary px-4" href="/src/pages/home/index.html">Back to feed</a>
+          </div>
+        </form>
+      </div>
     </main>
 
     <script type="module" src="./page.js"></script>

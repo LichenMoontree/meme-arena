@@ -15,11 +15,11 @@ function publicUrl(path) {
   return data.publicUrl;
 }
 
-function escapeHtml(s) {
-  return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+function esc(s) {
+  return (s ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
-// 1) Must be logged in
+// Must be logged in
 const { data: sessionData, error: sessionErr } = await supabase.auth.getSession();
 
 if (sessionErr) {
@@ -29,7 +29,7 @@ if (sessionErr) {
   render(`<div class="alert alert-info">Please login first. Redirecting…</div>`);
   setTimeout(() => (window.location.href = '/src/pages/login/index.html'), 2000);
 } else {
-  // 2) Must be admin
+  // Must be admin
   const userId = sessionData.session.user.id;
 
   const { data: roleRow, error: roleErr } = await supabase
@@ -45,7 +45,6 @@ if (sessionErr) {
     render(`<div class="alert alert-warning">Admins only. Redirecting…</div>`);
     setTimeout(() => (window.location.href = '/src/pages/home/index.html'), 2000);
   } else {
-    // ✅ Admin access granted
     await bootAdmin();
   }
 }
@@ -53,7 +52,7 @@ if (sessionErr) {
 async function loadPending() {
   const { data, error } = await supabase
     .from('memes')
-    .select('id,title,image_path,created_at,owner_id,status')
+    .select('id,title,image_path,created_at,status')
     .eq('status', 'pending')
     .order('created_at', { ascending: true });
 
@@ -74,8 +73,7 @@ async function removeMeme(id) {
 async function bootAdmin() {
   render(`
     <div id="msg" class="alert d-none" role="alert"></div>
-    <h2 class="h4 mt-2">Pending memes</h2>
-    <div id="pendingList" class="row g-3 mt-1"></div>
+    <div id="pendingList" class="row g-3"></div>
   `);
 
   const msg = document.getElementById('msg');
@@ -104,17 +102,18 @@ async function bootAdmin() {
       .map((m) => {
         const img = publicUrl(m.image_path);
         return `
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-              <img src="${img}" class="card-img-top" alt="${escapeHtml(m.title)}"
-                   style="max-height:260px;object-fit:cover;" />
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100">
+              <img src="${img}" class="card-img-top" alt="${esc(m.title)}"
+                   style="height:220px; object-fit:cover;" />
               <div class="card-body d-flex flex-column">
-                <h5 class="card-title">${escapeHtml(m.title)}</h5>
+                <h5 class="card-title">${esc(m.title)}</h5>
                 <div class="small text-muted mb-3">${new Date(m.created_at).toLocaleString()}</div>
+
                 <div class="mt-auto d-flex gap-2">
-                  <button class="btn btn-success btn-sm" data-approve="${m.id}">Approve</button>
-                  <button class="btn btn-outline-danger btn-sm" data-reject="${m.id}">Reject</button>
-                  <button class="btn btn-outline-secondary btn-sm" data-delete="${m.id}">Delete</button>
+                  <button class="btn btn-primary btn-sm px-3" data-approve="${m.id}">Approve</button>
+                  <button class="btn btn-outline-danger btn-sm px-3" data-reject="${m.id}">Reject</button>
+                  <button class="btn btn-outline-primary btn-sm px-3" data-delete="${m.id}">Delete</button>
                 </div>
               </div>
             </div>

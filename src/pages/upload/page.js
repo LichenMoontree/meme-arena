@@ -17,7 +17,7 @@ function hideMsg() {
   msg.textContent = '';
 }
 
-// ✅ Guard: must be logged in
+// Guard: must be logged in
 const { data: sessionData, error: sessionErr } = await supabase.auth.getSession();
 if (sessionErr) {
   console.error(sessionErr);
@@ -25,9 +25,7 @@ if (sessionErr) {
 } else if (!sessionData.session) {
   showMsg('info', 'Please login first. Redirecting…');
   setTimeout(() => (window.location.href = '/src/pages/login/index.html'), 2000);
-  // Stop here (don’t attach submit handler)
 } else {
-  // Logged in: enable upload
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     hideMsg();
