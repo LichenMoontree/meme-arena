@@ -11,6 +11,10 @@ function setStatus(text) {
   if (statusEl) statusEl.textContent = text;
 }
 
+function clearStatus() {
+  if (statusEl) statusEl.textContent = '';
+}
+
 function publicUrl(path) {
   const { data } = supabase.storage.from('memes').getPublicUrl(path);
   return data.publicUrl;
@@ -60,7 +64,7 @@ function renderFeed(memes, statsMap) {
   if (!feedEl) return;
 
   if (memes.length === 0) {
-    feedEl.innerHTML = `<div class="text-muted">No approved memes yet. Be the first menace. 😼</div>`;
+    feedEl.innerHTML = `<div class="text-muted">No memes yet. Be the first menace. 😼</div>`;
     return;
   }
 
@@ -88,7 +92,6 @@ function renderFeed(memes, statsMap) {
               <h5 class="card-title mb-1" style="line-height:1.2;">${esc(m.title)}</h5>
               <div class="small text-muted mb-2">${new Date(m.created_at).toLocaleString()}</div>
 
-              <!-- ✅ stats row: comments + votes together -->
               <div class="d-flex align-items-center justify-content-between mt-auto pt-2">
                 <div class="d-flex align-items-center gap-2">
                   <span class="small text-muted">💬 ${st.comments}</span>
@@ -110,11 +113,11 @@ function renderFeed(memes, statsMap) {
 }
 
 try {
-  setStatus('Summoning the approved memes… 🍿');
+  setStatus('Summoning memes…');
   const memes = await loadApproved();
   const statsMap = await loadStatsForIds(memes.map((m) => m.id));
   renderFeed(memes, statsMap);
-  setStatus('Enjoy the chaos. 👁️');
+  clearStatus(); // ✅ no duplicate “Enjoy the chaos”
 } catch (err) {
   console.error(err);
   setStatus('Failed to load (see console).');
