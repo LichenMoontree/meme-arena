@@ -9,42 +9,67 @@
   <body>
     <nav id="appNav"></nav>
 
-    <main class="container py-4" style="max-width: 900px">
+    <main class="container py-4" style="max-width: 980px">
       <div id="msg" class="alert d-none" role="alert"></div>
 
-      <h1 id="title" class="h3 mb-2">Meme</h1>
-      <div id="meta" class="text-muted mb-3"></div>
+      <div class="row g-4">
+        <!-- Meme card -->
+        <div class="col-12 col-lg-7">
+          <div class="card p-3">
+            <h1 id="title" class="h4 mb-2">Meme</h1>
+            <div id="meta" class="text-muted small mb-3"></div>
 
-      <img
-        id="img"
-        alt="meme"
-        class="img-fluid rounded shadow-sm"
-        style="max-height: 520px; object-fit: contain; width: 100%"
-      />
+            <div class="rounded-4 overflow-hidden border" style="border-color: rgba(34,24,28,0.10) !important;">
+              <img
+                id="img"
+                alt="meme"
+                class="img-fluid"
+                style="max-height: 560px; object-fit: contain; width: 100%"
+              />
+            </div>
+          </div>
+        </div>
 
-      <hr class="my-4" />
+        <!-- Interaction panel -->
+        <div class="col-12 col-lg-5">
+          <div class="card p-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="h6 mb-0">Reactions</h2>
+              <span class="badge rounded-pill" style="background: rgba(89,201,165,0.16); color:#22181C;">
+                Score: <strong id="score">0</strong>
+              </span>
+            </div>
 
-      <div id="voteBox" class="d-none">
-        <div class="d-flex align-items-center gap-2">
-          <button id="upBtn" class="btn btn-success btn-sm" type="button">Upvote</button>
-          <button id="downBtn" class="btn btn-danger btn-sm" type="button">Downvote</button>
-          <span class="ms-2 text-muted">Score: <strong id="score">0</strong></span>
+            <div id="voteBox" class="d-none mt-3">
+              <div class="d-flex gap-2">
+                <button id="upBtn" class="btn btn-primary w-100" type="button">👍 Upvote</button>
+                <button id="downBtn" class="btn btn-outline-danger w-100" type="button">👎 Downvote</button>
+              </div>
+            </div>
+
+            <div id="loginHint" class="alert alert-info d-none mt-3 mb-0">
+              Login to vote and comment.
+            </div>
+
+            <hr class="my-4" />
+
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="h6 mb-0">Comments</h2>
+              <span id="commentCount" class="text-muted small"></span>
+            </div>
+
+            <div id="comments" class="mt-3"></div>
+
+            <form id="commentForm" class="mt-3 d-none">
+              <div class="input-group">
+                <input id="comment" class="form-control" placeholder="Write a comment…" />
+                <button class="btn btn-primary" type="submit">Post</button>
+              </div>
+              <div class="form-text">Be nice. Or at least be funny.</div>
+            </form>
+          </div>
         </div>
       </div>
-
-      <div id="loginHint" class="alert alert-info d-none mt-3">
-        Login to vote and comment.
-      </div>
-
-      <h2 class="h5 mt-4">Comments</h2>
-      <div id="comments" class="mt-2"></div>
-
-      <form id="commentForm" class="mt-3 d-none">
-        <div class="input-group">
-          <input id="comment" class="form-control" placeholder="Write a comment…" />
-          <button class="btn btn-primary" type="submit">Post</button>
-        </div>
-      </form>
     </main>
 
     <script type="module" src="./page.js"></script>

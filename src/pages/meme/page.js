@@ -21,6 +21,7 @@ const downBtn = document.getElementById('downBtn');
 const commentsEl = document.getElementById('comments');
 const commentForm = document.getElementById('commentForm');
 const commentInput = document.getElementById('comment');
+const commentCountEl = document.getElementById('commentCount');
 
 function showMsg(type, text) {
   msgEl.className = `alert alert-${type}`;
@@ -151,6 +152,8 @@ async function refreshComments(userId) {
   }
 
   const rows = data ?? [];
+  if (commentCountEl) commentCountEl.textContent = `${rows.length} total`;
+
   if (rows.length === 0) {
     commentsEl.innerHTML = `<div class="text-muted">No comments yet.</div>`;
     return;
@@ -160,9 +163,9 @@ async function refreshComments(userId) {
     .map((c) => {
       const canDelete = userId && c.user_id === userId;
       return `
-        <div class="border rounded p-2 mb-2">
+        <div class="rounded-4 p-3 mb-2" style="background: rgba(255,255,255,0.75); border: 1px solid rgba(34,24,28,0.10);">
           <div class="small text-muted">${new Date(c.created_at).toLocaleString()}</div>
-          <div>${esc(c.content)}</div>
+          <div class="mt-1">${esc(c.content)}</div>
           ${
             canDelete
               ? `<button class="btn btn-outline-danger btn-sm mt-2" data-del="${c.id}">Delete</button>`
