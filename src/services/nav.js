@@ -53,7 +53,7 @@ export async function renderNav(active = '') {
     <div class="container-fluid">
       <div class="w-100 d-flex align-items-center justify-content-between gap-3 p-3">
         <a class="ma-brand" href="/src/pages/home/index.html">
-          <span class="ma-title">Meme Arena</span>
+          <span class="ma-title">Battlememe</span>
         </a>
 
         <div class="ma-navlinks">
