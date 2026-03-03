@@ -10,7 +10,7 @@ export async function renderNav(active = '') {
   const nav = document.getElementById('appNav');
   if (!nav) return;
 
-  nav.className = 'p-3 d-flex justify-content-between align-items-center flex-wrap gap-2';
+  nav.className = 'p-3 d-flex justify-content-between align-items-center flex-wrap gap-3';
 
   const { data: sessionData } = await supabase.auth.getSession();
   const session = sessionData.session;
@@ -37,7 +37,7 @@ export async function renderNav(active = '') {
     .map((l) => {
       const isActive = l.key === active;
       return `
-        <a class="btn btn-sm ma-pill ${isActive ? 'btn-primary' : 'btn-outline-primary'}"
+        <a class="btn btn-sm ma-pill ${isActive ? 'btn-primary' : 'btn-outline-primary'} px-3"
            href="${l.href}">
           ${l.label}
         </a>`;
@@ -47,17 +47,17 @@ export async function renderNav(active = '') {
   const right = session
     ? `
       <span class="text-muted small">${esc(session.user.email ?? 'Logged in')}</span>
-      <button id="navLogout" class="btn btn-outline-danger btn-sm ma-pill" type="button">Logout</button>
+      <button id="navLogout" class="btn btn-outline-danger btn-sm ma-pill px-3" type="button">Logout</button>
     `
     : `
-      <a class="btn btn-outline-primary btn-sm ma-pill" href="/src/pages/login/index.html">Login</a>
-      <a class="btn btn-primary btn-sm ma-pill" href="/src/pages/register/index.html">Register</a>
+      <a class="btn btn-outline-primary btn-sm ma-pill px-3" href="/src/pages/login/index.html">Login</a>
+      <a class="btn btn-primary btn-sm ma-pill px-3" href="/src/pages/register/index.html">Register</a>
     `;
 
   nav.innerHTML = `
-    <div class="d-flex align-items-center flex-wrap gap-2">
+    <div class="d-flex align-items-center flex-wrap gap-3">
       <a class="ma-brand" href="/src/pages/home/index.html">🎭 Meme Arena</a>
-      ${left}
+      <div class="d-flex align-items-center flex-wrap gap-2">${left}</div>
     </div>
     <div class="d-flex align-items-center flex-wrap gap-2">${right}</div>
   `;

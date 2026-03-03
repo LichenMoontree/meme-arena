@@ -1,5 +1,5 @@
 /* src/styles/theme.css */
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Comic+Neue:wght@700&display=swap');
 
 :root{
   --bg: #F6E8EA;
@@ -16,23 +16,20 @@ html, body{ min-height: 100%; }
 body{
   color: var(--ink);
 
-  /* ✅ Put blobs FIRST so they render ON TOP of the base gradient */
+  /* blobs on top */
   background:
-    /* coral blobs */
     radial-gradient(260px 220px at 12% 18%, rgba(239,98,108,0.10), transparent 70%),
     radial-gradient(220px 200px at 24% 62%, rgba(239,98,108,0.08), transparent 72%),
     radial-gradient(200px 180px at 88% 42%, rgba(239,98,108,0.07), transparent 72%),
 
-    /* mint blobs (slightly stronger so they show) */
     radial-gradient(260px 230px at 82% 18%, rgba(89,201,165,0.14), transparent 72%),
     radial-gradient(240px 210px at 18% 88%, rgba(89,201,165,0.12), transparent 72%),
     radial-gradient(260px 230px at 86% 86%, rgba(89,201,165,0.12), transparent 72%),
 
-    /* tiny ink blobs for depth */
     radial-gradient(200px 180px at 46% 22%, rgba(34,24,28,0.04), transparent 70%),
     radial-gradient(220px 190px at 52% 58%, rgba(34,24,28,0.035), transparent 72%),
 
-    /* ✅ Base pastel gradient LAST (bottom layer) */
+    /* base gradient bottom */
     linear-gradient(135deg,
       rgba(239,98,108,0.045) 0%,
       rgba(246,232,234,0.98) 42%,
@@ -56,7 +53,7 @@ body{
 
 /* Brand */
 .ma-brand{
-  font-family: 'Bangers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: 'Luckiest Guy', 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 26px;
   letter-spacing: 0.6px;
   color: var(--ink);
