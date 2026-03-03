@@ -56,7 +56,7 @@ export async function renderNav(active = '') {
 
   nav.innerHTML = `
     <div class="d-flex align-items-center flex-wrap gap-2">
-      <a class="ma-link ma-brand me-2" href="/src/pages/home/index.html">🎭 Meme Arena</a>
+      <a class="ma-brand" href="/src/pages/home/index.html">🎭 Meme Arena</a>
       ${left}
     </div>
     <div class="d-flex align-items-center flex-wrap gap-2">${right}</div>

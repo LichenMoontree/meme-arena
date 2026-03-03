@@ -1,110 +1,114 @@
 /* src/styles/theme.css */
 
-/* Playful palette */
-:root {
-  --ma-bg1: #fff7f0;
-  --ma-bg2: #f3f7ff;
-  --ma-ink: #1f2a37;
-  --ma-muted: #6b7280;
+/* Comic-ish font for logo */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
-  --ma-pink: #ff4d8d;
-  --ma-purple: #7c3aed;
-  --ma-blue: #2563eb;
-  --ma-mint: #34d399;
-  --ma-sun: #f59e0b;
+/* Palette: Playful Twilight */
+:root{
+  --bg: #F6E8EA;      /* blush */
+  --coral: #EF626C;   /* primary */
+  --ink: #22181C;     /* text */
+  --mint: #59C9A5;    /* secondary */
+
+  --card: rgba(255,255,255,0.78);
+  --border: rgba(34,24,28,0.12);
 }
 
-/* Soft fun background */
-body {
+/* Background based on your palette */
+body{
+  color: var(--ink);
   background:
-    radial-gradient(1200px 600px at 10% 10%, rgba(255, 77, 141, 0.12), transparent 60%),
-    radial-gradient(1000px 500px at 90% 20%, rgba(124, 58, 237, 0.12), transparent 55%),
-    radial-gradient(900px 500px at 30% 90%, rgba(37, 99, 235, 0.10), transparent 55%),
-    linear-gradient(180deg, var(--ma-bg1), var(--ma-bg2));
-  color: var(--ma-ink);
+    radial-gradient(900px 520px at 12% 15%, rgba(239,98,108,0.16), transparent 60%),
+    radial-gradient(820px 520px at 88% 20%, rgba(89,201,165,0.16), transparent 58%),
+    radial-gradient(820px 520px at 50% 92%, rgba(34,24,28,0.06), transparent 62%),
+    linear-gradient(180deg, var(--bg), #fff);
 }
 
-/* Make Bootstrap feel more “toy-like” */
-.container {
-  max-width: 1100px;
-}
-
-/* Nav styling */
-#appNav {
+/* Sticky nav */
+#appNav{
   position: sticky;
   top: 0;
   z-index: 50;
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.72);
-  border-bottom: 1px solid rgba(31, 42, 55, 0.08);
+  background: rgba(246,232,234,0.72);
+  border-bottom: 1px solid var(--border);
 }
 
-.ma-brand {
-  font-weight: 800;
-  letter-spacing: 0.2px;
-}
-
-.ma-pill {
-  border-radius: 999px !important;
-}
-
-.ma-link {
+/* Brand */
+.ma-brand{
+  font-family: 'Bangers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.5px;
+  color: var(--ink);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transform: rotate(-1deg);
 }
 
-/* Cards: more playful, hover pop */
-.card {
-  border: 1px solid rgba(31, 42, 55, 0.08);
+/* Pills */
+.ma-pill{ border-radius: 999px !important; }
+
+/* Buttons: coral/mint theme */
+.btn{
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.btn-primary{
+  background: linear-gradient(135deg, var(--coral), #ff7a82);
+  border: none;
+}
+.btn-primary:hover{ filter: brightness(0.98); }
+
+.btn-success{
+  background: linear-gradient(135deg, var(--mint), #7fe3c6);
+  border: none;
+}
+
+.btn-outline-primary{
+  color: var(--ink);
+  border-color: rgba(239,98,108,0.55);
+}
+.btn-outline-primary:hover{
+  background: rgba(239,98,108,0.12);
+  border-color: rgba(239,98,108,0.55);
+  color: var(--ink);
+}
+
+.btn-outline-danger{
+  border-radius: 999px;
+}
+
+/* Cards */
+.card{
+  border: 1px solid var(--border);
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(31, 42, 55, 0.06);
+  background: var(--card);
+  box-shadow: 0 12px 26px rgba(34,24,28,0.10);
   overflow: hidden;
 }
-
-.card:hover {
+.card:hover{
   transform: translateY(-2px);
   transition: transform 120ms ease, box-shadow 120ms ease;
-  box-shadow: 0 14px 30px rgba(31, 42, 55, 0.10);
-}
-
-/* Buttons: slightly chunkier */
-.btn {
-  border-radius: 14px;
-  font-weight: 600;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--ma-blue), var(--ma-purple));
-  border: none;
-}
-
-.btn-success {
-  background: linear-gradient(135deg, var(--ma-mint), #10b981);
-  border: none;
-}
-
-.btn-danger {
-  background: linear-gradient(135deg, #fb7185, #ef4444);
-  border: none;
-}
-
-.btn-outline-primary {
-  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 16px 34px rgba(34,24,28,0.14);
 }
 
 /* Alerts: softer */
-.alert {
+.alert{
   border-radius: 16px;
-  border: 1px solid rgba(31, 42, 55, 0.08);
+  border: 1px solid var(--border);
 }
 
-/* Headings: a little more “poster-like” */
-.display-4 {
+/* Headings: bold but clean */
+.display-4{
   font-weight: 900;
   letter-spacing: -0.8px;
 }
 
-/* Meme images: keep nice framing */
+/* Images */
 .card-img-top,
-img.img-fluid {
-  background: rgba(255, 255, 255, 0.6);
+img.img-fluid{
+  background: rgba(255,255,255,0.6);
 }
