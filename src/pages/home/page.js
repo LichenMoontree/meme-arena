@@ -20,29 +20,43 @@ function esc(s) {
   return (s ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
-async function loadApprovedWithStats() {
-  // Pull memes + stats via a join on the view
-  const { data, error } = await supabase
-    .from('memes')
-    .select('id,title,image_path,created_at,meme_stats(score,comments_count)')
-    .eq('status', 'approved')
-    .order('created_at', { ascending: false });
-
-  if (error) throw error;
-
-  return (data ?? []).map((m) => ({
-    ...m,
-    score: m.meme_stats?.score ?? 0,
-    comments: m.meme_stats?.comments_count ?? 0,
-  }));
-}
-
 function isNew(createdAt) {
   const ageMs = Date.now() - new Date(createdAt).getTime();
   return ageMs < 24 * 60 * 60 * 1000;
 }
 
-function renderFeed(memes) {
+async function loadApproved() {
+  const { data, error } = await supabase
+    .from('memes')
+    .select('id,title,image_path,created_at')
+    .eq('status', 'approved')
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
+}
+
+async function loadStatsForIds(ids) {
+  if (ids.length === 0) return new Map();
+
+  const { data, error } = await supabase
+    .from('meme_stats')
+    .select('meme_id,score,comments_count')
+    .in('meme_id', ids);
+
+  if (error) throw error;
+
+  const map = new Map();
+  for (const row of data ?? []) {
+    map.set(row.meme_id, {
+      score: row.score ?? 0,
+      comments: row.comments_count ?? 0,
+    });
+  }
+  return map;
+}
+
+function renderFeed(memes, statsMap) {
   if (!feedEl) return;
 
   if (memes.length === 0) {
@@ -53,6 +67,8 @@ function renderFeed(memes) {
   feedEl.innerHTML = memes
     .map((m) => {
       const img = publicUrl(m.image_path);
+      const st = statsMap.get(m.id) ?? { score: 0, comments: 0 };
+
       const newBadge = isNew(m.created_at)
         ? `<span class="badge rounded-pill" style="background: rgba(239,98,108,0.12); color:#22181C;">NEW</span>`
         : '';
@@ -68,7 +84,7 @@ function renderFeed(memes) {
               </div>
               <div style="position:absolute; top:12px; right:12px;">
                 <span class="badge rounded-pill" style="background: rgba(89,201,165,0.18); color:#22181C;">
-                  ▲ ${m.score}
+                  ▲ ${st.score}
                 </span>
               </div>
             </div>
@@ -78,7 +94,7 @@ function renderFeed(memes) {
               <div class="small text-muted mb-2">${new Date(m.created_at).toLocaleString()}</div>
 
               <div class="d-flex align-items-center justify-content-between mt-auto pt-2">
-                <span class="small text-muted">💬 ${m.comments}</span>
+                <span class="small text-muted">💬 ${st.comments}</span>
                 <a class="btn btn-primary btn-sm px-3" href="/src/pages/meme/index.html?id=${m.id}">Open</a>
               </div>
             </div>
@@ -91,8 +107,9 @@ function renderFeed(memes) {
 
 try {
   setStatus('Loading approved memes…');
-  const memes = await loadApprovedWithStats();
-  renderFeed(memes);
+  const memes = await loadApproved();
+  const statsMap = await loadStatsForIds(memes.map((m) => m.id));
+  renderFeed(memes, statsMap);
   setStatus('Ready.');
 } catch (err) {
   console.error(err);
