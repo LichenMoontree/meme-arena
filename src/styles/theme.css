@@ -2,11 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Comic+Neue:wght@700&display=swap');
 
 :root{
-  --bg: #f4fffb;        /* minty white */
-  --mint: #59C9A5;      /* primary */
-  --mint2: #8be7cd;     /* lighter mint */
-  --ink: #22181C;       /* text */
-  --coral: #EF626C;     /* small accent */
+  --bg: #f4fffb;
+  --mint: #59C9A5;
+  --mint2: #8be7cd;
+  --ink: #22181C;
+  --coral: #EF626C;
+
   --border: rgba(34,24,28,0.10);
   --card: rgba(255,255,255,0.86);
 }
@@ -15,12 +16,24 @@ html, body{ min-height: 100%; }
 
 body{
   color: var(--ink);
+
+  /* ✅ more subtle bubbles */
   background:
-    radial-gradient(380px 260px at 12% 20%, rgba(89,201,165,0.16), transparent 72%),
-    radial-gradient(320px 240px at 80% 18%, rgba(139,231,205,0.16), transparent 72%),
-    radial-gradient(360px 240px at 22% 88%, rgba(89,201,165,0.12), transparent 74%),
-    radial-gradient(300px 220px at 88% 86%, rgba(239,98,108,0.06), transparent 74%),
+    radial-gradient(140px 140px at 8% 16%, rgba(89,201,165,0.12), transparent 72%),
+    radial-gradient(160px 160px at 18% 34%, rgba(239,98,108,0.07), transparent 72%),
+    radial-gradient(120px 120px at 12% 62%, rgba(89,201,165,0.10), transparent 72%),
+    radial-gradient(180px 180px at 22% 86%, rgba(89,201,165,0.10), transparent 74%),
+
+    radial-gradient(140px 140px at 52% 14%, rgba(239,98,108,0.06), transparent 72%),
+    radial-gradient(170px 170px at 56% 44%, rgba(89,201,165,0.10), transparent 74%),
+    radial-gradient(120px 120px at 48% 78%, rgba(239,98,108,0.06), transparent 72%),
+
+    radial-gradient(150px 150px at 86% 18%, rgba(89,201,165,0.12), transparent 72%),
+    radial-gradient(120px 120px at 92% 42%, rgba(239,98,108,0.06), transparent 72%),
+    radial-gradient(170px 170px at 84% 78%, rgba(89,201,165,0.10), transparent 74%),
+
     linear-gradient(135deg, rgba(89,201,165,0.08) 0%, var(--bg) 45%, rgba(139,231,205,0.10) 100%);
+
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -35,50 +48,71 @@ body{
   border-bottom: 1px solid var(--border);
 }
 
-/* Brand: bubbly + comic */
+/* brand */
 .ma-brand{
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--ink);
 }
 
-/* little "avatar" bubble */
-.ma-mark{
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
+.ma-bubble{
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
   background: rgba(255,255,255,0.75);
   border: 1px solid rgba(34,24,28,0.10);
   box-shadow: 0 8px 18px rgba(34,24,28,0.10);
-  font-size: 20px;
+  color: var(--mint);
+  font-size: 18px;
 }
 
-/* logo text */
 .ma-title{
   font-family: 'Rubik Bubbles', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1;
-  letter-spacing: 0.4px;
-  transform: rotate(-1deg);
-  text-shadow:
-    1px 1px 0 rgba(89,201,165,0.30),
-    -1px 1px 0 rgba(239,98,108,0.18);
+  letter-spacing: 0.3px;
+
+  /* mint -> coral text */
+  background: linear-gradient(90deg, var(--mint), var(--coral));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 10px 20px rgba(34,24,28,0.08);
 }
 
-.ma-tag{
+/* nav links */
+.ma-navlinks{
+  display: flex;
+  justify-content: space-evenly;
+  flex: 1;
+  gap: 24px;
+  min-width: 320px;
+}
+
+.ma-navlink{
   font-family: 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  color: rgba(34,24,28,0.65);
-  margin-top: 2px;
+  font-weight: 800;
+  text-decoration: none;
+  color: rgba(34,24,28,0.78);
+  padding: 10px 12px;
+  border-radius: 14px;
 }
 
-.ma-pill{ border-radius: 999px !important; }
+.ma-navlink:hover{
+  background: rgba(89,201,165,0.10);
+  color: rgba(34,24,28,0.92);
+}
 
+.ma-navlink.is-active{
+  background: rgba(89,201,165,0.18);
+  color: rgba(34,24,28,0.98);
+}
+
+/* auth buttons kept subtle */
 .btn{
   border-radius: 14px;
   font-weight: 700;
@@ -87,16 +121,6 @@ body{
 .btn-primary{
   background: linear-gradient(135deg, var(--mint), var(--mint2));
   border: none;
-  color: var(--ink);
-}
-
-.btn-outline-primary{
-  color: var(--ink);
-  border-color: rgba(89,201,165,0.55);
-}
-.btn-outline-primary:hover{
-  background: rgba(89,201,165,0.12);
-  border-color: rgba(89,201,165,0.55);
   color: var(--ink);
 }
 
@@ -112,14 +136,9 @@ body{
 }
 
 .card{
-  border: 1px solid var(--border);
+  border: 1px solid rgba(34,24,28,0.10);
   border-radius: 18px;
   background: var(--card);
   box-shadow: 0 12px 26px rgba(34,24,28,0.10);
   overflow: hidden;
-}
-
-.alert{
-  border-radius: 16px;
-  border: 1px solid var(--border);
 }

@@ -32,46 +32,36 @@ export async function renderNav(active = '') {
 
   const visibleLinks = links.filter((l) => (!l.auth || session) && (!l.admin || isAdmin));
 
-  const pills = visibleLinks
+  const navLinksHtml = visibleLinks
     .map((l) => {
-      const isActive = l.key === active;
-      return `
-        <a class="btn btn-sm ma-pill ${isActive ? 'btn-primary' : 'btn-outline-primary'} px-3"
-           href="${l.href}">
-          ${l.label}
-        </a>`;
+      const cls = l.key === active ? 'ma-navlink is-active' : 'ma-navlink';
+      return `<a class="${cls}" href="${l.href}">${l.label}</a>`;
     })
     .join('');
 
   const right = session
     ? `
       <span class="text-muted small">${esc(session.user.email ?? 'Logged in')}</span>
-      <button id="navLogout" class="btn btn-outline-danger btn-sm ma-pill px-3" type="button">Logout</button>
+      <button id="navLogout" class="btn btn-outline-danger btn-sm px-3" type="button">Logout</button>
     `
     : `
-      <a class="btn btn-outline-primary btn-sm ma-pill px-3" href="/src/pages/login/index.html">Login</a>
-      <a class="btn btn-primary btn-sm ma-pill px-3" href="/src/pages/register/index.html">Register</a>
+      <a class="btn btn-outline-primary btn-sm px-3" href="/src/pages/login/index.html">Login</a>
+      <a class="btn btn-primary btn-sm px-3" href="/src/pages/register/index.html">Register</a>
     `;
-
-  // Pick a funny “face” depending on auth/admin
-  const mark = isAdmin ? '🧨' : (session ? '😼' : '🤡');
 
   nav.innerHTML = `
     <div class="container-fluid">
-      <div class="w-100 d-flex align-items-center justify-content-between flex-wrap gap-3 p-3">
+      <div class="w-100 d-flex align-items-center justify-content-between gap-3 p-3">
         <a class="ma-brand" href="/src/pages/home/index.html">
-          <span class="ma-mark" aria-hidden="true">${mark}</span>
-          <span>
-            <div class="ma-title">Meme Arena</div>
-            <div class="ma-tag">serious app, silly content</div>
-          </span>
+          <span class="ma-bubble" aria-hidden="true">🫧</span>
+          <span class="ma-title">Meme Arena</span>
         </a>
 
-        <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
-          ${pills}
+        <div class="ma-navlinks">
+          ${navLinksHtml}
         </div>
 
-        <div class="d-flex align-items-center gap-2 flex-wrap">
+        <div class="d-flex align-items-center gap-2">
           ${right}
         </div>
       </div>
