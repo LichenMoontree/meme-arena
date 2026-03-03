@@ -14,13 +14,13 @@
 
 html, body{ min-height: 100%; }
 
-/* ✅ solid white site background */
+/* solid white site background */
 body{
   color: var(--ink);
   background: #ffffff !important;
 }
 
-/* ✅ NAVBAR = BLACK */
+/* NAVBAR = BLACK */
 #appNav{
   position: sticky;
   top: 0;
@@ -56,14 +56,12 @@ body{
   gap: 2px;
 }
 
-/* ✅ logo letters are WHITE now */
+/* logo letters are WHITE */
 .ma-letter{
   display: inline-block;
   color: #ffffff;
   -webkit-text-stroke: 3px rgba(0,0,0,0.95);
   paint-order: stroke fill;
-
-  /* subtle neon glow detail */
   text-shadow:
     0 0 8px rgba(57,255,20,0.14),
     0 0 8px rgba(255,43,214,0.10);
@@ -84,7 +82,7 @@ body{
   .ma-navlinks{ width:auto; justify-content:center; flex-wrap:wrap; gap:10px; }
 }
 
-/* ✅ links are white */
+/* links are white */
 .ma-navlink{
   font-family:'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 800;
@@ -93,8 +91,6 @@ body{
   padding: 8px 10px;
   border-radius: 10px;
 }
-
-/* hover = neon underline */
 .ma-navlink:hover{
   color: #ffffff;
   text-decoration: underline;
@@ -102,7 +98,6 @@ body{
   text-underline-offset: 6px;
   text-decoration-color: var(--neonG);
 }
-
 .ma-navlink.is-active{
   color: #ffffff;
   text-decoration: underline;
@@ -112,39 +107,47 @@ body{
 }
 
 /* right-side text on black */
-.text-muted.small{
+#appNav .text-muted.small{
   color: rgba(255,255,255,0.70) !important;
 }
 
-/* buttons */
-.btn{
+/* ✅ IMPORTANT: DO NOT globally override Bootstrap outline buttons.
+   Only style buttons inside the black navbar. */
+#appNav .btn{
   border-radius: 14px;
   font-weight: 900;
 }
 
-.btn-primary{
+#appNav .btn-outline-primary{
+  border: 2px solid rgba(255,255,255,0.35);
+  color: #ffffff;
+}
+#appNav .btn-outline-primary:hover{
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+}
+
+#appNav .btn-primary{
   background: linear-gradient(90deg, var(--neonG), var(--neonB));
   border: 2px solid rgba(255,255,255,0.18);
   color: #0f0f10;
 }
 
-.btn-outline-primary{
-  border: 2px solid rgba(255,255,255,0.35);
-  color: #ffffff;
-}
-.btn-outline-primary:hover{
-  background: rgba(255,255,255,0.08);
-  color: #ffffff;
-}
-
-.btn-outline-danger{
+#appNav .btn-outline-danger{
   border-radius: 999px;
   border: 2px solid rgba(255,255,255,0.35);
   color: #ffffff;
 }
-.btn-outline-danger:hover{
+#appNav .btn-outline-danger:hover{
   background: rgba(255,43,214,0.10);
   color: #ffffff;
+}
+
+/* ✅ Global buttons (for white pages) — keep Bootstrap defaults,
+   but add only subtle rounding + weight. */
+.btn{
+  border-radius: 14px;
+  font-weight: 900;
 }
 
 /* cards */
@@ -183,20 +186,7 @@ body{
   background: linear-gradient(135deg, rgba(57,255,20,0.10), rgba(255,43,214,0.08));
 }
 
-/* featured ribbon */
-.ma-ribbon{
-  position: absolute;
-  top: 14px;
-  left: -44px;
-  transform: rotate(-35deg);
-  padding: 6px 56px;
-  font-family:'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-weight: 900;
-  font-size: 12px;
-  letter-spacing: 0.6px;
-  color: #0f0f10;
-  background: linear-gradient(90deg, var(--neonG), var(--neonP));
-  border: 2px solid rgba(15,15,16,0.18);
-  box-shadow: 4px 4px 0 rgba(15,15,16,0.10);
-  border-radius: 999px;
+/* Optional: make card top chips readable on images if they use badges */
+.badge{
+  font-weight: 800;
 }
