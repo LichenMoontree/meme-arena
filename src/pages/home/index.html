@@ -25,12 +25,26 @@
               </span>
             </div>
 
-            <h1 class="display-5 m-0" style="font-weight: 950; color:#0f0f10;">
-              Welcome to Battlememe.
-            </h1>
-            <p class="mt-2 mb-0 text-muted" style="max-width: 52ch;">
-              Upload. Get approved. Fight for the top spot with votes and comments.
-            </p>
+            <!-- ✅ Image next to the title -->
+            <div class="d-flex align-items-center gap-3">
+              <svg width="56" height="56" viewBox="0 0 64 64" aria-label="Sticker icon">
+                <rect x="6" y="6" width="52" height="52" rx="16" fill="white" stroke="rgba(15,15,16,0.65)" stroke-width="3"/>
+                <path d="M20 38c6 6 18 6 24 0" fill="none" stroke="rgba(15,15,16,0.65)" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="24" cy="28" r="4" fill="rgba(15,15,16,0.65)"/>
+                <circle cx="40" cy="28" r="4" fill="rgba(15,15,16,0.65)"/>
+                <path d="M10 14h10" stroke="#39ff14" stroke-width="4" stroke-linecap="round"/>
+                <path d="M44 50h10" stroke="#ff2bd6" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+
+              <div>
+                <h1 class="display-5 m-0" style="font-weight: 950; color:#0f0f10;">
+                  Welcome to Battlememe.
+                </h1>
+                <p class="mt-2 mb-0 text-muted" style="max-width: 52ch;">
+                  Upload. Get approved. Fight for the top spot with votes and comments.
+                </p>
+              </div>
+            </div>
 
             <div class="d-flex flex-wrap gap-2 mt-4">
               <a class="btn btn-primary px-4" href="/src/pages/upload/index.html">Upload meme</a>
@@ -40,7 +54,6 @@
 
           <div class="col-12 col-lg-5">
             <div class="ma-hero-blob p-3">
-              <!-- Keep your existing SVG block here (unchanged) -->
               <svg viewBox="0 0 520 360" width="100%" height="auto" aria-label="Hero illustration">
                 <defs>
                   <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
