@@ -1,38 +1,42 @@
 /* src/styles/theme.css */
-
-/* Comic-ish font for logo */
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
-/* Palette: Playful Twilight */
 :root{
-  --bg: #F6E8EA;      /* blush */
-  --coral: #EF626C;   /* accent */
-  --ink: #22181C;     /* text */
-  --mint: #59C9A5;    /* accent */
+  --bg: #F6E8EA;
+  --coral: #EF626C;
+  --ink: #22181C;
+  --mint: #59C9A5;
 
-  --card: rgba(255,255,255,0.80);
+  --card: rgba(255,255,255,0.82);
   --border: rgba(34,24,28,0.12);
 }
 
-/* ✅ One smooth, non-tiled pastel background */
-html, body{
-  min-height: 100%;
-}
+html, body{ min-height: 100%; }
 
 body{
   color: var(--ink);
 
-  /* Base pastel gradient (coral -> blush -> mint) */
+  /* ✅ Pastel base gradient (very soft coral -> blush -> mint) */
   background:
-    radial-gradient(1200px 700px at 18% 18%, rgba(239,98,108,0.18), transparent 62%),
-    radial-gradient(1100px 680px at 82% 20%, rgba(89,201,165,0.18), transparent 60%),
     linear-gradient(135deg,
-      rgba(239,98,108,0.10) 0%,
-      rgba(246,232,234,0.95) 38%,
-      rgba(89,201,165,0.10) 100%
-    );
+      rgba(239,98,108,0.05) 0%,
+      rgba(246,232,234,0.96) 42%,
+      rgba(89,201,165,0.06) 100%
+    ),
 
-  /* ✅ prevent “chopped tiles” */
+    /* ✅ mini blobs (subtle + many) */
+    radial-gradient(260px 220px at 12% 18%, rgba(239,98,108,0.10), transparent 70%),
+    radial-gradient(220px 200px at 24% 62%, rgba(239,98,108,0.07), transparent 72%),
+    radial-gradient(240px 210px at 18% 88%, rgba(89,201,165,0.10), transparent 72%),
+
+    radial-gradient(240px 220px at 78% 16%, rgba(89,201,165,0.11), transparent 72%),
+    radial-gradient(220px 210px at 88% 42%, rgba(239,98,108,0.06), transparent 72%),
+    radial-gradient(260px 230px at 86% 86%, rgba(89,201,165,0.09), transparent 72%),
+
+    radial-gradient(200px 180px at 46% 22%, rgba(34,24,28,0.04), transparent 70%),
+    radial-gradient(220px 190px at 52% 58%, rgba(34,24,28,0.035), transparent 72%),
+    radial-gradient(200px 180px at 44% 90%, rgba(34,24,28,0.03), transparent 72%);
+
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -71,23 +75,23 @@ body{
 }
 
 .btn-primary{
-  background: linear-gradient(135deg, var(--coral), #ff7a82);
+  /* slightly softer coral */
+  background: linear-gradient(135deg, rgba(239,98,108,0.95), rgba(255,140,148,0.95));
   border: none;
 }
-.btn-primary:hover{ filter: brightness(0.98); }
 
 .btn-success{
-  background: linear-gradient(135deg, var(--mint), #7fe3c6);
+  background: linear-gradient(135deg, rgba(89,201,165,0.95), rgba(140,233,206,0.95));
   border: none;
 }
 
 .btn-outline-primary{
   color: var(--ink);
-  border-color: rgba(239,98,108,0.55);
+  border-color: rgba(239,98,108,0.40);
 }
 .btn-outline-primary:hover{
-  background: rgba(239,98,108,0.12);
-  border-color: rgba(239,98,108,0.55);
+  background: rgba(239,98,108,0.10);
+  border-color: rgba(239,98,108,0.40);
   color: var(--ink);
 }
 
