@@ -39,10 +39,8 @@ form.addEventListener('submit', async (e) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
 
-    showMsg(
-      'success',
-      `Logged in! <a class="btn btn-success btn-sm ms-2" href="/src/pages/home/index.html">Continue</a>`
-    );
+    showMsg('success', 'Logged in! Redirecting…');
+    setTimeout(() => (window.location.href = '/src/pages/home/index.html'), 800);
   } catch (err) {
     console.error(err);
     showMsg('danger', err.message);
