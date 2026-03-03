@@ -36,12 +36,21 @@ export async function renderNav(active = '') {
 
   const visibleLinks = links.filter((l) => (!l.auth || session) && (!l.admin || isAdmin));
 
-  const navLinksHtml = visibleLinks
-    .map((l) => {
-      const cls = l.key === active ? 'ma-navlink is-active' : 'ma-navlink';
-      return `<a class="${cls}" href="${l.href}">${l.label}</a>`;
-    })
-    .join('');
+  // ✅ If logged out, don't show the center menu at all
+  const navLinksHtml =
+    session && visibleLinks.length > 0
+      ? visibleLinks
+          .map((l) => {
+            const cls = l.key === active ? 'ma-navlink is-active' : 'ma-navlink';
+            return `<a class="${cls}" href="${l.href}">${l.label}</a>`;
+          })
+          .join('')
+      : '';
+
+  const centerNav =
+    session && navLinksHtml
+      ? `<div class="ma-navlinks">${navLinksHtml}</div>`
+      : `<div style="flex:1;"></div>`;
 
   const right = session
     ? `
@@ -57,19 +66,10 @@ export async function renderNav(active = '') {
 
   nav.innerHTML = `
     <div class="container-fluid">
-      <!-- Ribbon label row (white text on black strip) -->
-      <div style="position: relative; top: -12px; height: 0; pointer-events:none;">
-        <div style="position:absolute; left: 16px; top: 0; color: white; font-weight: 800; font-family: system-ui; font-size: 12px; letter-spacing: .12em;">
-          MENU
-        </div>
-      </div>
-
       <div class="w-100 d-flex align-items-center justify-content-between gap-3 p-3">
         <a class="ma-brand" href="/src/pages/home/index.html">${logoHtml}</a>
 
-        <div class="ma-navlinks">
-          ${navLinksHtml}
-        </div>
+        ${centerNav}
 
         <div class="d-flex align-items-center gap-2">
           ${right}

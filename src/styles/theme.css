@@ -29,7 +29,7 @@ body{
   border-bottom: 0 !important;
 }
 
-/* top ribbon stays black too (now redundant but harmless) */
+/* black top strip */
 #appNav::before{
   content:"";
   display:block;
@@ -44,7 +44,7 @@ body{
   align-items:center;
 }
 
-/* bubble logo wrapper */
+/* logo wrapper */
 .ma-title{
   font-family:'Coiny', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 34px;
@@ -56,24 +56,20 @@ body{
   gap: 2px;
 }
 
-/* colored fill per letter + black outline */
+/* ✅ logo letters are WHITE now */
 .ma-letter{
   display: inline-block;
-  color: var(--neonG);
+  color: #ffffff;
   -webkit-text-stroke: 3px rgba(0,0,0,0.95);
   paint-order: stroke fill;
 
-  /* subtle neon glow */
+  /* subtle neon glow detail */
   text-shadow:
-    0 0 8px rgba(57,255,20,0.18),
-    0 0 8px rgba(255,43,214,0.14);
+    0 0 8px rgba(57,255,20,0.14),
+    0 0 8px rgba(255,43,214,0.10);
 }
 
-.ma-letter:nth-child(3n+1){ color: var(--neonG); }
-.ma-letter:nth-child(3n+2){ color: var(--neonP); }
-.ma-letter:nth-child(3n+3){ color: var(--neonB); }
-
-/* per-letter bounce */
+/* subtle per-letter bounce */
 .ma-letter:nth-child(odd){ transform: translateY(1px); }
 .ma-letter:nth-child(even){ transform: translateY(-1px); }
 
@@ -88,7 +84,7 @@ body{
   .ma-navlinks{ width:auto; justify-content:center; flex-wrap:wrap; gap:10px; }
 }
 
-/* ✅ links are white now */
+/* ✅ links are white */
 .ma-navlink{
   font-family:'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 800;
@@ -98,7 +94,7 @@ body{
   border-radius: 10px;
 }
 
-/* hover = neon underline, not background blocks */
+/* hover = neon underline */
 .ma-navlink:hover{
   color: #ffffff;
   text-decoration: underline;
@@ -120,7 +116,7 @@ body{
   color: rgba(255,255,255,0.70) !important;
 }
 
-/* buttons: keep readable on black */
+/* buttons */
 .btn{
   border-radius: 14px;
   font-weight: 900;
@@ -136,7 +132,6 @@ body{
   border: 2px solid rgba(255,255,255,0.35);
   color: #ffffff;
 }
-
 .btn-outline-primary:hover{
   background: rgba(255,255,255,0.08);
   color: #ffffff;
@@ -165,8 +160,14 @@ body{
   transition: transform 140ms ease, box-shadow 140ms ease;
   box-shadow:
     6px 6px 0 rgba(15,15,16,0.10),
-    0 0 22px rgba(57,255,20,0.12),
+    0 0 22px rgba(57,255,20,0.10),
     0 0 18px rgba(255,43,214,0.08);
+}
+
+/* alerts */
+.alert{
+  border-radius: 16px;
+  border: 2px solid rgba(15,15,16,0.14);
 }
 
 /* hero helpers */
