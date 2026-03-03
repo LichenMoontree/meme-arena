@@ -28,8 +28,6 @@ body{
   background: #0f0f10 !important;
   border-bottom: 0 !important;
 }
-
-/* black top strip */
 #appNav::before{
   content:"";
   display:block;
@@ -66,8 +64,6 @@ body{
     0 0 8px rgba(57,255,20,0.14),
     0 0 8px rgba(255,43,214,0.10);
 }
-
-/* subtle per-letter bounce */
 .ma-letter:nth-child(odd){ transform: translateY(1px); }
 .ma-letter:nth-child(even){ transform: translateY(-1px); }
 
@@ -82,7 +78,7 @@ body{
   .ma-navlinks{ width:auto; justify-content:center; flex-wrap:wrap; gap:10px; }
 }
 
-/* links are white */
+/* nav links */
 .ma-navlink{
   font-family:'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 800;
@@ -111,27 +107,51 @@ body{
   color: rgba(255,255,255,0.70) !important;
 }
 
-/* IMPORTANT: Only style buttons inside the black navbar */
-#appNav .btn{
+/* ✅ Global buttons: rounded + bold */
+.btn{
   border-radius: 14px;
   font-weight: 900;
 }
 
+/* ✅ GLOBAL primary buttons = neon gradient (fixes all the blue buttons) */
+.btn-primary{
+  background: linear-gradient(90deg, var(--neonG), var(--neonB)) !important;
+  border: 2px solid rgba(15,15,16,0.12) !important;
+  color: #0f0f10 !important;
+  box-shadow: 0 0 18px rgba(57,255,20,0.12), 0 0 14px rgba(0,229,255,0.10);
+}
+.btn-primary:hover{
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+/* ✅ GLOBAL success buttons (if any page uses btn-success) */
+.btn-success{
+  background: linear-gradient(90deg, var(--neonG), var(--neonB)) !important;
+  border: 2px solid rgba(15,15,16,0.12) !important;
+  color: #0f0f10 !important;
+}
+
+/* Outline buttons on white pages */
+.btn-outline-primary{
+  border: 2px solid rgba(15,15,16,0.18) !important;
+  color: #0f0f10 !important;
+  background: #ffffff !important;
+}
+.btn-outline-primary:hover{
+  background: rgba(15,15,16,0.04) !important;
+}
+
+/* ✅ Navbar button variants stay readable on black */
 #appNav .btn-outline-primary{
-  border: 2px solid rgba(255,255,255,0.35);
-  color: #ffffff;
+  border: 2px solid rgba(255,255,255,0.35) !important;
+  color: #ffffff !important;
+  background: transparent !important;
 }
 #appNav .btn-outline-primary:hover{
-  background: rgba(255,255,255,0.08);
-  color: #ffffff;
+  background: rgba(255,255,255,0.08) !important;
+  color: #ffffff !important;
 }
-
-#appNav .btn-primary{
-  background: linear-gradient(90deg, var(--neonG), var(--neonB));
-  border: 2px solid rgba(255,255,255,0.18);
-  color: #0f0f10;
-}
-
 #appNav .btn-outline-danger{
   border-radius: 999px;
   border: 2px solid rgba(255,255,255,0.35);
@@ -140,12 +160,6 @@ body{
 #appNav .btn-outline-danger:hover{
   background: rgba(255,43,214,0.10);
   color: #ffffff;
-}
-
-/* Global buttons: keep Bootstrap behavior, just add rounding + weight */
-.btn{
-  border-radius: 14px;
-  font-weight: 900;
 }
 
 /* cards */
@@ -179,26 +193,8 @@ body{
   box-shadow: 8px 8px 0 rgba(15,15,16,0.10);
 }
 
-/* Optional: badge weight */
 .badge{ font-weight: 800; }
 
-/* ✅ HERO CTA buttons (neon gradient) */
-.ma-cta{
-  background: linear-gradient(90deg, var(--neonG), var(--neonB)) !important;
-  border: 2px solid rgba(15,15,16,0.12) !important;
-  color: #0f0f10 !important;
-  box-shadow: 0 0 18px rgba(57,255,20,0.12), 0 0 14px rgba(0,229,255,0.10);
-}
-.ma-cta:hover{
-  filter: brightness(1.03);
-  transform: translateY(-1px);
-}
-
-.ma-cta-outline{
-  border: 2px solid rgba(15,15,16,0.18) !important;
-  color: #0f0f10 !important;
-  background: #ffffff !important;
-}
-.ma-cta-outline:hover{
-  background: rgba(15,15,16,0.04) !important;
-}
+/* keep hero CTA classes (harmless; same look as btn-primary now) */
+.ma-cta{ }
+.ma-cta-outline{ }
