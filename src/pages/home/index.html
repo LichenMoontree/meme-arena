@@ -12,6 +12,7 @@
     <main class="container py-4">
       <section class="ma-hero p-4 p-md-5 mb-4">
         <div class="row g-4 align-items-center">
+          <!-- LEFT: text -->
           <div class="col-12 col-lg-7">
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span
@@ -34,72 +35,43 @@
               </span>
             </div>
 
-            <!-- ✅ Title with image AFTER the wording -->
-            <div class="d-flex align-items-start justify-content-between gap-3">
-              <div style="flex: 1; min-width: 0;">
-                <div class="d-flex align-items-center gap-3 flex-wrap">
-                  <h1 class="display-5 m-0" style="font-weight: 950; color:#0f0f10;">
-                    Welcome to Battlememe.
-                  </h1>
+            <h1 class="display-5 m-0" style="font-weight: 950; color:#0f0f10;">
+              Welcome to Battlememe.
+            </h1>
 
-                  <!-- ✅ YOUR PNG HERE -->
-                  <img
-                    src="/assets/puking%20rainbow.png"
-                    alt="Battlememe sticker"
-                    width="56"
-                    height="56"
-                    style="display:block; flex: 0 0 auto;"
-                  />
-                </div>
+            <p class="mt-2 mb-0 text-muted" style="max-width: 52ch;">
+              Upload. Get approved. Fight for the top spot with votes and comments.
+            </p>
 
-                <p class="mt-2 mb-0 text-muted" style="max-width: 52ch;">
-                  Upload. Get approved. Fight for the top spot with votes and comments.
-                </p>
-
-                <div class="d-flex flex-wrap gap-2 mt-4">
-                  <a class="btn btn-primary px-4" href="/src/pages/upload/index.html">Upload meme</a>
-                  <a class="btn btn-outline-primary px-4" href="#feedSection">Browse feed</a>
-                </div>
-              </div>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <a class="btn btn-primary px-4" href="/src/pages/upload/index.html">Upload meme</a>
+              <a class="btn btn-outline-primary px-4" href="#feedSection">Browse feed</a>
             </div>
           </div>
 
+          <!-- RIGHT: BIG image (replaces the old illustration) -->
           <div class="col-12 col-lg-5">
             <div class="ma-hero-blob p-3">
-              <!-- existing hero illustration -->
-              <svg viewBox="0 0 520 360" width="100%" height="auto" aria-label="Hero illustration">
-                <defs>
-                  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="rgba(34,24,28,0.20)" />
-                  </filter>
-                </defs>
-
-                <rect x="22" y="22" width="476" height="316" rx="26"
-                      fill="rgba(255,255,255,0.85)" stroke="rgba(34,24,28,0.35)" stroke-width="3"
-                      filter="url(#shadow)"/>
-
-                <circle cx="95" cy="95" r="18" fill="rgba(57,255,20,0.22)" stroke="rgba(34,24,28,0.25)" stroke-width="3"/>
-                <circle cx="430" cy="82" r="14" fill="rgba(255,43,214,0.18)" stroke="rgba(34,24,28,0.25)" stroke-width="3"/>
-                <circle cx="405" cy="280" r="16" fill="rgba(0,229,255,0.18)" stroke="rgba(34,24,28,0.25)" stroke-width="3"/>
-
-                <rect x="80" y="120" width="220" height="170" rx="18"
-                      fill="white" stroke="rgba(34,24,28,0.35)" stroke-width="3"/>
-                <rect x="98" y="138" width="184" height="92" rx="14"
-                      fill="rgba(57,255,20,0.16)" stroke="rgba(34,24,28,0.25)" stroke-width="3"/>
-                <rect x="98" y="244" width="140" height="18" rx="9"
-                      fill="rgba(34,24,28,0.06)" stroke="rgba(34,24,28,0.18)" stroke-width="2"/>
-                <rect x="98" y="268" width="100" height="14" rx="7"
-                      fill="rgba(34,24,28,0.05)" stroke="rgba(34,24,28,0.14)" stroke-width="2"/>
-
-                <rect x="320" y="92" width="150" height="198" rx="18"
-                      fill="white" stroke="rgba(34,24,28,0.35)" stroke-width="3"/>
-                <rect x="338" y="116" width="114" height="32" rx="16"
-                      fill="rgba(255,43,214,0.14)" stroke="rgba(34,24,28,0.22)" stroke-width="3"/>
-                <rect x="338" y="162" width="114" height="32" rx="16"
-                      fill="rgba(57,255,20,0.14)" stroke="rgba(34,24,28,0.22)" stroke-width="3"/>
-                <rect x="338" y="208" width="114" height="56" rx="16"
-                      fill="rgba(34,24,28,0.05)" stroke="rgba(34,24,28,0.18)" stroke-width="3"/>
-              </svg>
+              <div
+                style="
+                  border-radius: 18px;
+                  overflow: hidden;
+                  background: rgba(255,255,255,0.85);
+                  border: 2px solid rgba(15,15,16,0.14);
+                "
+              >
+                <img
+                  src="/assets/puking%20rainbow.png"
+                  alt="Hero meme sticker"
+                  style="
+                    display: block;
+                    width: 100%;
+                    height: 260px;
+                    object-fit: contain;
+                    padding: 14px;
+                  "
+                />
+              </div>
             </div>
           </div>
         </div>
