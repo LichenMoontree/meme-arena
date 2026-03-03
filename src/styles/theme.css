@@ -1,5 +1,5 @@
 /* src/styles/theme.css */
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Comic+Neue:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Comic+Neue:wght@700&display=swap');
 
 :root{
   --ink:#0f0f10;
@@ -36,7 +36,6 @@ body{
   border-bottom: 2px solid rgba(15,15,16,0.18);
 }
 
-/* neon strip (menu ribbon) */
 #appNav::before{
   content:"";
   display:block;
@@ -46,41 +45,42 @@ body{
 
 .ma-brand{ text-decoration:none; display:inline-flex; align-items:center; }
 
-/* ✅ Messier logo */
+/* readable bubble logo */
 .ma-title{
-  font-family:'Rubik Bubbles', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 32px;
+  font-family:'Coiny', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 34px;
   line-height: 1;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+}
 
-  background: linear-gradient(90deg, var(--neonG), var(--neonP));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color: transparent;
+/* ✅ Color inside, black outline stays */
+.ma-letter{
+  display: inline-block;
 
-  /* heavier outline + stacked shadows */
-  -webkit-text-stroke: 1.6px rgba(15,15,16,0.45);
+  /* default fill (will be overridden by nth-child) */
+  color: var(--neonG);
+
+  -webkit-text-stroke: 3px rgba(15,15,16,0.88);
+  paint-order: stroke fill;
 
   text-shadow:
-    2px 2px 0 rgba(15,15,16,0.14),
-    -2px 2px 0 rgba(15,15,16,0.08),
-    0 0 10px rgba(57,255,20,0.26),
-    0 0 14px rgba(255,43,214,0.22),
-    0 0 18px rgba(0,229,255,0.16);
-
-  /* sticker wobble */
-  transform: rotate(-3deg) skewX(-10deg);
-  animation: maWobble 3.8s ease-in-out infinite;
-  transform-origin: left center;
+    3px 3px 0 rgba(15,15,16,0.18),
+    0 0 10px rgba(57,255,20,0.12),
+    0 0 10px rgba(255,43,214,0.10);
 }
 
-@keyframes maWobble{
-  0%   { transform: rotate(-3deg) skewX(-10deg) translateY(0); }
-  35%  { transform: rotate(-2deg) skewX(-7deg) translateY(-1px); }
-  70%  { transform: rotate(-4deg) skewX(-12deg) translateY(1px); }
-  100% { transform: rotate(-3deg) skewX(-10deg) translateY(0); }
-}
+/* candy alternation */
+.ma-letter:nth-child(3n+1){ color: var(--neonG); }
+.ma-letter:nth-child(3n+2){ color: var(--neonP); }
+.ma-letter:nth-child(3n+3){ color: var(--neonB); }
+
+/* subtle per-letter bounce */
+.ma-letter:nth-child(odd){ transform: translateY(1px); }
+.ma-letter:nth-child(even){ transform: translateY(-1px); }
 
 /* nav links */
 .ma-navlinks{ width: 40%; display:flex; justify-content:space-between; gap: 12px; }
@@ -101,7 +101,7 @@ body{
   outline: 2px solid rgba(15,15,16,0.18);
 }
 
-/* cards + glow hover */
+/* cards */
 .card{
   background: var(--card);
   border: 2px solid rgba(15,15,16,0.35);
@@ -119,6 +119,7 @@ body{
     0 0 18px rgba(255,43,214,0.10);
 }
 
+/* buttons */
 .btn{ border-radius: 14px; font-weight: 900; }
 .btn-primary{
   background: linear-gradient(90deg, var(--neonG), var(--neonB));
@@ -128,8 +129,10 @@ body{
 .btn-outline-primary{ border: 2px solid rgba(15,15,16,0.25); }
 .btn-outline-danger{ border-radius: 999px; border: 2px solid rgba(15,15,16,0.25); }
 
+/* alerts */
 .alert{ border-radius: 16px; border: 2px solid rgba(15,15,16,0.18); }
 
+/* hero helpers */
 .ma-hero{
   border: 2px solid rgba(15,15,16,0.25);
   border-radius: 22px;
