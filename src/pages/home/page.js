@@ -60,7 +60,7 @@ function renderFeed(memes, statsMap) {
   if (!feedEl) return;
 
   if (memes.length === 0) {
-    feedEl.innerHTML = `<div class="text-muted">No approved memes yet.</div>`;
+    feedEl.innerHTML = `<div class="text-muted">No approved memes yet. Be the first menace. 😼</div>`;
     return;
   }
 
@@ -70,7 +70,7 @@ function renderFeed(memes, statsMap) {
       const st = statsMap.get(m.id) ?? { score: 0, comments: 0 };
 
       const newBadge = isNew(m.created_at)
-        ? `<span class="badge rounded-pill" style="background: rgba(239,98,108,0.12); color:#22181C;">NEW</span>`
+        ? `<span class="badge rounded-pill" style="background:#0f0f10; color:#ffffff; border:1px solid rgba(255,255,255,0.25);">NEW</span>`
         : '';
 
       return `
@@ -82,20 +82,24 @@ function renderFeed(memes, statsMap) {
               <div style="position:absolute; top:12px; left:12px;">
                 ${newBadge}
               </div>
-              <div style="position:absolute; top:12px; right:12px;">
-                <span class="badge rounded-pill" style="background: rgba(89,201,165,0.18); color:#22181C;">
-                  ▲ ${st.score}
-                </span>
-              </div>
             </div>
 
             <div class="card-body d-flex flex-column">
               <h5 class="card-title mb-1" style="line-height:1.2;">${esc(m.title)}</h5>
               <div class="small text-muted mb-2">${new Date(m.created_at).toLocaleString()}</div>
 
+              <!-- ✅ stats row: comments + votes together -->
               <div class="d-flex align-items-center justify-content-between mt-auto pt-2">
-                <span class="small text-muted">💬 ${st.comments}</span>
-                <a class="btn btn-primary btn-sm px-3" href="/src/pages/meme/index.html?id=${m.id}">Open</a>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="small text-muted">💬 ${st.comments}</span>
+                  <span class="badge rounded-pill" style="background:#0f0f10; color:#ffffff;">
+                    ▲ ${st.score}
+                  </span>
+                </div>
+
+                <a class="btn btn-primary btn-sm px-3" href="/src/pages/meme/index.html?id=${m.id}">
+                  Open
+                </a>
               </div>
             </div>
           </div>
@@ -106,11 +110,11 @@ function renderFeed(memes, statsMap) {
 }
 
 try {
-  setStatus('Loading approved memes…');
+  setStatus('Summoning the approved memes… 🍿');
   const memes = await loadApproved();
   const statsMap = await loadStatsForIds(memes.map((m) => m.id));
   renderFeed(memes, statsMap);
-  setStatus('Ready.');
+  setStatus('Enjoy the chaos. 👁️');
 } catch (err) {
   console.error(err);
   setStatus('Failed to load (see console).');
