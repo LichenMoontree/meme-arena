@@ -2,12 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Comic+Neue:wght@700&display=swap');
 
 :root{
-  --bg: #f4fffb;
   --mint: #59C9A5;
   --mint2: #8be7cd;
   --ink: #22181C;
   --coral: #EF626C;
-
   --border: rgba(34,24,28,0.10);
   --card: rgba(255,255,255,0.86);
 }
@@ -17,22 +15,11 @@ html, body{ min-height: 100%; }
 body{
   color: var(--ink);
 
-  /* ✅ more subtle bubbles */
+  /* ✅ Mint base, subtle coral only at the bottom */
   background:
-    radial-gradient(140px 140px at 8% 16%, rgba(89,201,165,0.12), transparent 72%),
-    radial-gradient(160px 160px at 18% 34%, rgba(239,98,108,0.07), transparent 72%),
-    radial-gradient(120px 120px at 12% 62%, rgba(89,201,165,0.10), transparent 72%),
-    radial-gradient(180px 180px at 22% 86%, rgba(89,201,165,0.10), transparent 74%),
-
-    radial-gradient(140px 140px at 52% 14%, rgba(239,98,108,0.06), transparent 72%),
-    radial-gradient(170px 170px at 56% 44%, rgba(89,201,165,0.10), transparent 74%),
-    radial-gradient(120px 120px at 48% 78%, rgba(239,98,108,0.06), transparent 72%),
-
-    radial-gradient(150px 150px at 86% 18%, rgba(89,201,165,0.12), transparent 72%),
-    radial-gradient(120px 120px at 92% 42%, rgba(239,98,108,0.06), transparent 72%),
-    radial-gradient(170px 170px at 84% 78%, rgba(89,201,165,0.10), transparent 74%),
-
-    linear-gradient(135deg, rgba(89,201,165,0.08) 0%, var(--bg) 45%, rgba(139,231,205,0.10) 100%);
+    radial-gradient(900px 520px at 50% 0%, rgba(89,201,165,0.22), transparent 60%),
+    radial-gradient(1200px 520px at 50% 110%, rgba(239,98,108,0.08), transparent 65%),
+    linear-gradient(180deg, rgba(244,255,251,1) 0%, rgba(244,255,251,1) 65%, rgba(246,232,234,0.92) 100%);
 
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -48,25 +35,11 @@ body{
   border-bottom: 1px solid var(--border);
 }
 
-/* brand */
+/* Logo: text only */
 .ma-brand{
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-}
-
-.ma-bubble{
-  width: 34px;
-  height: 34px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: rgba(255,255,255,0.75);
-  border: 1px solid rgba(34,24,28,0.10);
-  box-shadow: 0 8px 18px rgba(34,24,28,0.10);
-  color: var(--mint);
-  font-size: 18px;
 }
 
 .ma-title{
@@ -75,7 +48,6 @@ body{
   line-height: 1;
   letter-spacing: 0.3px;
 
-  /* mint -> coral text */
   background: linear-gradient(90deg, var(--mint), var(--coral));
   -webkit-background-clip: text;
   background-clip: text;
@@ -84,13 +56,17 @@ body{
   text-shadow: 0 10px 20px rgba(34,24,28,0.08);
 }
 
-/* nav links */
+/* Nav links: constrained to 40% so they sit closer together */
 .ma-navlinks{
+  width: 40%;
   display: flex;
-  justify-content: space-evenly;
-  flex: 1;
-  gap: 24px;
-  min-width: 320px;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* fallback on small screens */
+@media (max-width: 992px){
+  .ma-navlinks{ width: auto; justify-content: center; gap: 10px; flex-wrap: wrap; }
 }
 
 .ma-navlink{
@@ -98,7 +74,7 @@ body{
   font-weight: 800;
   text-decoration: none;
   color: rgba(34,24,28,0.78);
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-radius: 14px;
 }
 
@@ -112,7 +88,7 @@ body{
   color: rgba(34,24,28,0.98);
 }
 
-/* auth buttons kept subtle */
+/* auth buttons subtle */
 .btn{
   border-radius: 14px;
   font-weight: 700;
