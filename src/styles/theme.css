@@ -14,27 +14,26 @@
 
 html, body{ min-height: 100%; }
 
-/* ✅ FORCE solid white background */
+/* ✅ solid white site background */
 body{
   color: var(--ink);
   background: #ffffff !important;
 }
 
-/* nav */
+/* ✅ NAVBAR = BLACK */
 #appNav{
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(10px);
-  background: rgba(255,255,255,0.92);
-  border-bottom: 2px solid rgba(15,15,16,0.12);
+  background: #0f0f10 !important;
+  border-bottom: 0 !important;
 }
 
-/* ✅ FORCE black ribbon bar */
+/* top ribbon stays black too (now redundant but harmless) */
 #appNav::before{
   content:"";
   display:block;
-  height: 12px;
+  height: 10px;
   background: #0f0f10 !important;
 }
 
@@ -57,28 +56,28 @@ body{
   gap: 2px;
 }
 
-/* ✅ colored fill per letter + thick black outline */
+/* colored fill per letter + black outline */
 .ma-letter{
   display: inline-block;
-  color: var(--neonG); /* overridden below */
-  -webkit-text-stroke: 3px rgba(15,15,16,0.90);
+  color: var(--neonG);
+  -webkit-text-stroke: 3px rgba(0,0,0,0.95);
   paint-order: stroke fill;
 
+  /* subtle neon glow */
   text-shadow:
-    2px 2px 0 rgba(15,15,16,0.14),
-    0 0 8px rgba(57,255,20,0.10),
-    0 0 8px rgba(255,43,214,0.08);
+    0 0 8px rgba(57,255,20,0.18),
+    0 0 8px rgba(255,43,214,0.14);
 }
 
 .ma-letter:nth-child(3n+1){ color: var(--neonG); }
 .ma-letter:nth-child(3n+2){ color: var(--neonP); }
 .ma-letter:nth-child(3n+3){ color: var(--neonB); }
 
-/* subtle per-letter bounce */
+/* per-letter bounce */
 .ma-letter:nth-child(odd){ transform: translateY(1px); }
 .ma-letter:nth-child(even){ transform: translateY(-1px); }
 
-/* nav links */
+/* nav links container */
 .ma-navlinks{
   width: 40%;
   display:flex;
@@ -89,25 +88,68 @@ body{
   .ma-navlinks{ width:auto; justify-content:center; flex-wrap:wrap; gap:10px; }
 }
 
+/* ✅ links are white now */
 .ma-navlink{
   font-family:'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 800;
   text-decoration:none;
-  color: rgba(15,15,16,0.86);
+  color: rgba(255,255,255,0.92);
   padding: 8px 10px;
-  border-radius: 12px;
-}
-.ma-navlink:hover{
-  background: rgba(15,15,16,0.06);
-}
-.ma-navlink.is-active{
-  background: rgba(15,15,16,0.08);
-  outline: 2px solid rgba(15,15,16,0.12);
+  border-radius: 10px;
 }
 
-/* readable muted text on white */
+/* hover = neon underline, not background blocks */
+.ma-navlink:hover{
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--neonG);
+}
+
+.ma-navlink.is-active{
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--neonB);
+}
+
+/* right-side text on black */
 .text-muted.small{
-  color: rgba(15,15,16,0.55) !important;
+  color: rgba(255,255,255,0.70) !important;
+}
+
+/* buttons: keep readable on black */
+.btn{
+  border-radius: 14px;
+  font-weight: 900;
+}
+
+.btn-primary{
+  background: linear-gradient(90deg, var(--neonG), var(--neonB));
+  border: 2px solid rgba(255,255,255,0.18);
+  color: #0f0f10;
+}
+
+.btn-outline-primary{
+  border: 2px solid rgba(255,255,255,0.35);
+  color: #ffffff;
+}
+
+.btn-outline-primary:hover{
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+}
+
+.btn-outline-danger{
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.35);
+  color: #ffffff;
+}
+.btn-outline-danger:hover{
+  background: rgba(255,43,214,0.10);
+  color: #ffffff;
 }
 
 /* cards */
@@ -125,30 +167,6 @@ body{
     6px 6px 0 rgba(15,15,16,0.10),
     0 0 22px rgba(57,255,20,0.12),
     0 0 18px rgba(255,43,214,0.08);
-}
-
-/* buttons */
-.btn{
-  border-radius: 14px;
-  font-weight: 900;
-}
-.btn-primary{
-  background: linear-gradient(90deg, var(--neonG), var(--neonB));
-  border: 2px solid rgba(15,15,16,0.18);
-  color: var(--ink);
-}
-.btn-outline-primary{
-  border: 2px solid rgba(15,15,16,0.18);
-}
-.btn-outline-danger{
-  border-radius: 999px;
-  border: 2px solid rgba(15,15,16,0.18);
-}
-
-/* alerts */
-.alert{
-  border-radius: 16px;
-  border: 2px solid rgba(15,15,16,0.14);
 }
 
 /* hero helpers */
@@ -175,7 +193,7 @@ body{
   font-weight: 900;
   font-size: 12px;
   letter-spacing: 0.6px;
-  color: var(--ink);
+  color: #0f0f10;
   background: linear-gradient(90deg, var(--neonG), var(--neonP));
   border: 2px solid rgba(15,15,16,0.18);
   box-shadow: 4px 4px 0 rgba(15,15,16,0.10);
