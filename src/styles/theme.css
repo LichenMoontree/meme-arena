@@ -6,22 +6,36 @@
 /* Palette: Playful Twilight */
 :root{
   --bg: #F6E8EA;      /* blush */
-  --coral: #EF626C;   /* primary */
+  --coral: #EF626C;   /* accent */
   --ink: #22181C;     /* text */
-  --mint: #59C9A5;    /* secondary */
+  --mint: #59C9A5;    /* accent */
 
-  --card: rgba(255,255,255,0.78);
+  --card: rgba(255,255,255,0.80);
   --border: rgba(34,24,28,0.12);
 }
 
-/* Background based on your palette */
+/* ✅ One smooth, non-tiled pastel background */
+html, body{
+  min-height: 100%;
+}
+
 body{
   color: var(--ink);
+
+  /* Base pastel gradient (coral -> blush -> mint) */
   background:
-    radial-gradient(900px 520px at 12% 15%, rgba(239,98,108,0.16), transparent 60%),
-    radial-gradient(820px 520px at 88% 20%, rgba(89,201,165,0.16), transparent 58%),
-    radial-gradient(820px 520px at 50% 92%, rgba(34,24,28,0.06), transparent 62%),
-    linear-gradient(180deg, var(--bg), #fff);
+    radial-gradient(1200px 700px at 18% 18%, rgba(239,98,108,0.18), transparent 62%),
+    radial-gradient(1100px 680px at 82% 20%, rgba(89,201,165,0.18), transparent 60%),
+    linear-gradient(135deg,
+      rgba(239,98,108,0.10) 0%,
+      rgba(246,232,234,0.95) 38%,
+      rgba(89,201,165,0.10) 100%
+    );
+
+  /* ✅ prevent “chopped tiles” */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 /* Sticky nav */
@@ -38,7 +52,7 @@ body{
 .ma-brand{
   font-family: 'Bangers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 26px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   color: var(--ink);
   text-decoration: none;
   display: inline-flex;
@@ -50,7 +64,7 @@ body{
 /* Pills */
 .ma-pill{ border-radius: 999px !important; }
 
-/* Buttons: coral/mint theme */
+/* Buttons */
 .btn{
   border-radius: 14px;
   font-weight: 700;
@@ -77,10 +91,6 @@ body{
   color: var(--ink);
 }
 
-.btn-outline-danger{
-  border-radius: 999px;
-}
-
 /* Cards */
 .card{
   border: 1px solid var(--border);
@@ -95,13 +105,13 @@ body{
   box-shadow: 0 16px 34px rgba(34,24,28,0.14);
 }
 
-/* Alerts: softer */
+/* Alerts */
 .alert{
   border-radius: 16px;
   border: 1px solid var(--border);
 }
 
-/* Headings: bold but clean */
+/* Headings */
 .display-4{
   font-weight: 900;
   letter-spacing: -0.8px;
