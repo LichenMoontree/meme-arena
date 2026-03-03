@@ -3,27 +3,21 @@
 
 :root{
   --ink:#0f0f10;
-  --bg:#fbfbff;
 
+  /* neon accents */
   --neonG:#39ff14;
   --neonP:#ff2bd6;
   --neonB:#00e5ff;
 
-  --card: rgba(255,255,255,0.92);
+  --card: rgba(255,255,255,0.96);
 }
 
 html, body{ min-height: 100%; }
-
 body{
   color: var(--ink);
-  background:
-    radial-gradient(900px 420px at 15% 10%, rgba(57,255,20,0.10), transparent 62%),
-    radial-gradient(900px 420px at 85% 18%, rgba(255,43,214,0.10), transparent 62%),
-    radial-gradient(900px 420px at 50% 95%, rgba(0,229,255,0.08), transparent 66%),
-    linear-gradient(180deg, var(--bg), #ffffff);
+  background: #ffffff; /* ✅ solid white */
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 /* nav */
@@ -32,20 +26,26 @@ body{
   top: 0;
   z-index: 50;
   backdrop-filter: blur(10px);
-  background: rgba(251,251,255,0.84);
-  border-bottom: 2px solid rgba(15,15,16,0.18);
+  background: rgba(255,255,255,0.92);
+  border-bottom: 2px solid rgba(15,15,16,0.12);
 }
 
+/* ✅ menu ribbon: black bar */
 #appNav::before{
   content:"";
   display:block;
-  height: 6px;
-  background: linear-gradient(90deg, var(--neonG), var(--neonB), var(--neonP));
+  height: 12px;          /* thicker, feels like a real ribbon */
+  background: #0f0f10;   /* solid black */
 }
 
-.ma-brand{ text-decoration:none; display:inline-flex; align-items:center; }
+/* brand */
+.ma-brand{
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+}
 
-/* readable bubble logo */
+/* bubble logo wrapper */
 .ma-title{
   font-family:'Coiny', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 34px;
@@ -57,23 +57,20 @@ body{
   gap: 2px;
 }
 
-/* ✅ Color inside, black outline stays */
+/* ✅ colored fill per letter + black outline (kept) */
 .ma-letter{
   display: inline-block;
-
-  /* default fill (will be overridden by nth-child) */
-  color: var(--neonG);
-
-  -webkit-text-stroke: 3px rgba(15,15,16,0.88);
+  color: var(--neonG); /* overridden below */
+  -webkit-text-stroke: 3px rgba(15,15,16,0.90);
   paint-order: stroke fill;
 
+  /* subtle neon glow only as detail */
   text-shadow:
-    3px 3px 0 rgba(15,15,16,0.18),
-    0 0 10px rgba(57,255,20,0.12),
-    0 0 10px rgba(255,43,214,0.10);
+    2px 2px 0 rgba(15,15,16,0.14),
+    0 0 8px rgba(57,255,20,0.10),
+    0 0 8px rgba(255,43,214,0.08);
 }
 
-/* candy alternation */
 .ma-letter:nth-child(3n+1){ color: var(--neonG); }
 .ma-letter:nth-child(3n+2){ color: var(--neonP); }
 .ma-letter:nth-child(3n+3){ color: var(--neonB); }
@@ -82,69 +79,90 @@ body{
 .ma-letter:nth-child(odd){ transform: translateY(1px); }
 .ma-letter:nth-child(even){ transform: translateY(-1px); }
 
-/* nav links */
-.ma-navlinks{ width: 40%; display:flex; justify-content:space-between; gap: 12px; }
+/* nav links (clean text) */
+.ma-navlinks{
+  width: 40%;
+  display:flex;
+  justify-content:space-between;
+  gap: 12px;
+}
 @media (max-width: 992px){
   .ma-navlinks{ width:auto; justify-content:center; flex-wrap:wrap; gap:10px; }
 }
+
 .ma-navlink{
   font-family:'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 800;
   text-decoration:none;
-  color: rgba(15,15,16,0.82);
+  color: rgba(15,15,16,0.86);
   padding: 8px 10px;
   border-radius: 12px;
 }
-.ma-navlink:hover{ background: rgba(57,255,20,0.10); }
+.ma-navlink:hover{
+  background: rgba(15,15,16,0.06);
+}
 .ma-navlink.is-active{
-  background: rgba(57,255,20,0.18);
-  outline: 2px solid rgba(15,15,16,0.18);
+  background: rgba(15,15,16,0.08);
+  outline: 2px solid rgba(15,15,16,0.12);
 }
 
-/* cards */
+/* ✅ make navbar right side (email + buttons) readable on white + add neon micro-accent */
+.text-muted.small{
+  color: rgba(15,15,16,0.55) !important;
+}
+
+/* cards (sticker-ish but clean) */
 .card{
   background: var(--card);
-  border: 2px solid rgba(15,15,16,0.35);
+  border: 2px solid rgba(15,15,16,0.18);
   border-radius: 18px;
-  box-shadow: 6px 6px 0 rgba(15,15,16,0.20);
+  box-shadow: 6px 6px 0 rgba(15,15,16,0.10);
   overflow: hidden;
 }
 .card:hover{
   transform: translateY(-2px);
   transition: transform 140ms ease, box-shadow 140ms ease;
   box-shadow:
-    6px 6px 0 rgba(15,15,16,0.20),
-    0 0 0 2px rgba(15,15,16,0.06),
-    0 0 22px rgba(57,255,20,0.16),
-    0 0 18px rgba(255,43,214,0.10);
+    6px 6px 0 rgba(15,15,16,0.10),
+    0 0 22px rgba(57,255,20,0.12),
+    0 0 18px rgba(255,43,214,0.08);
 }
 
 /* buttons */
 .btn{ border-radius: 14px; font-weight: 900; }
 .btn-primary{
   background: linear-gradient(90deg, var(--neonG), var(--neonB));
-  border: 2px solid rgba(15,15,16,0.25);
+  border: 2px solid rgba(15,15,16,0.18);
   color: var(--ink);
 }
-.btn-outline-primary{ border: 2px solid rgba(15,15,16,0.25); }
-.btn-outline-danger{ border-radius: 999px; border: 2px solid rgba(15,15,16,0.25); }
+.btn-outline-primary{
+  border: 2px solid rgba(15,15,16,0.18);
+}
+.btn-outline-danger{
+  border-radius: 999px;
+  border: 2px solid rgba(15,15,16,0.18);
+}
 
 /* alerts */
-.alert{ border-radius: 16px; border: 2px solid rgba(15,15,16,0.18); }
+.alert{
+  border-radius: 16px;
+  border: 2px solid rgba(15,15,16,0.14);
+}
 
 /* hero helpers */
 .ma-hero{
-  border: 2px solid rgba(15,15,16,0.25);
+  border: 2px solid rgba(15,15,16,0.18);
   border-radius: 22px;
-  background: rgba(255,255,255,0.86);
-  box-shadow: 8px 8px 0 rgba(15,15,16,0.18);
+  background: rgba(255,255,255,0.96);
+  box-shadow: 8px 8px 0 rgba(15,15,16,0.10);
 }
 .ma-hero-blob{
-  border: 2px solid rgba(15,15,16,0.18);
+  border: 2px solid rgba(15,15,16,0.14);
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(57,255,20,0.14), rgba(255,43,214,0.10));
+  background: linear-gradient(135deg, rgba(57,255,20,0.10), rgba(255,43,214,0.08));
 }
 
+/* featured ribbon */
 .ma-ribbon{
   position: absolute;
   top: 14px;
@@ -155,9 +173,9 @@ body{
   font-weight: 900;
   font-size: 12px;
   letter-spacing: 0.6px;
-  color: var(--ink);
+  color: #0f0f10;
   background: linear-gradient(90deg, var(--neonG), var(--neonP));
-  border: 2px solid rgba(15,15,16,0.25);
-  box-shadow: 4px 4px 0 rgba(15,15,16,0.18);
+  border: 2px solid rgba(15,15,16,0.18);
+  box-shadow: 4px 4px 0 rgba(15,15,16,0.10);
   border-radius: 999px;
 }

@@ -6,6 +6,10 @@ function esc(s) {
   return (s ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
+function renderLogoWord(word) {
+  return word.split('').map((ch) => `<span class="ma-letter">${ch}</span>`).join('');
+}
+
 export async function renderNav(active = '') {
   const nav = document.getElementById('appNav');
   if (!nav) return;
@@ -49,12 +53,19 @@ export async function renderNav(active = '') {
       <a class="btn btn-primary btn-sm px-3" href="/src/pages/register/index.html">Register</a>
     `;
 
+  const logoHtml = `<span class="ma-title">${renderLogoWord('BATTLEMeme')}</span>`;
+
   nav.innerHTML = `
     <div class="container-fluid">
+      <!-- Ribbon label row (white text on black strip) -->
+      <div style="position: relative; top: -12px; height: 0; pointer-events:none;">
+        <div style="position:absolute; left: 16px; top: 0; color: white; font-weight: 800; font-family: system-ui; font-size: 12px; letter-spacing: .12em;">
+          MENU
+        </div>
+      </div>
+
       <div class="w-100 d-flex align-items-center justify-content-between gap-3 p-3">
-        <a class="ma-brand" href="/src/pages/home/index.html">
-          <span class="ma-title">Battlememe</span>
-        </a>
+        <a class="ma-brand" href="/src/pages/home/index.html">${logoHtml}</a>
 
         <div class="ma-navlinks">
           ${navLinksHtml}
