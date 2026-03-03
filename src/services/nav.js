@@ -32,7 +32,7 @@ export async function renderNav(active = '') {
 
   const visibleLinks = links.filter((l) => (!l.auth || session) && (!l.admin || isAdmin));
 
-  const pillLinks = visibleLinks
+  const pills = visibleLinks
     .map((l) => {
       const isActive = l.key === active;
       return `
@@ -43,63 +43,36 @@ export async function renderNav(active = '') {
     })
     .join('');
 
-  const authBlockDesktop = session
+  const right = session
     ? `
-      <div class="d-flex align-items-center gap-2">
-        <span class="text-muted small">${esc(session.user.email ?? 'Logged in')}</span>
-        <button id="navLogout" class="btn btn-outline-danger btn-sm ma-pill px-3" type="button">Logout</button>
-      </div>
+      <span class="text-muted small">${esc(session.user.email ?? 'Logged in')}</span>
+      <button id="navLogout" class="btn btn-outline-danger btn-sm ma-pill px-3" type="button">Logout</button>
     `
     : `
-      <div class="d-flex align-items-center gap-2">
-        <a class="btn btn-outline-primary btn-sm ma-pill px-3" href="/src/pages/login/index.html">Login</a>
-        <a class="btn btn-primary btn-sm ma-pill px-3" href="/src/pages/register/index.html">Register</a>
-      </div>
+      <a class="btn btn-outline-primary btn-sm ma-pill px-3" href="/src/pages/login/index.html">Login</a>
+      <a class="btn btn-primary btn-sm ma-pill px-3" href="/src/pages/register/index.html">Register</a>
     `;
 
-  const authBlockMobile = session
-    ? `
-      <div class="d-flex flex-column gap-2 mt-2">
-        <div class="text-muted small">${esc(session.user.email ?? 'Logged in')}</div>
-        <button id="navLogoutMobile" class="btn btn-outline-danger btn-sm ma-pill px-3" type="button">Logout</button>
-      </div>
-    `
-    : `
-      <div class="d-flex flex-column gap-2 mt-2">
-        <a class="btn btn-outline-primary btn-sm ma-pill px-3" href="/src/pages/login/index.html">Login</a>
-        <a class="btn btn-primary btn-sm ma-pill px-3" href="/src/pages/register/index.html">Register</a>
-      </div>
-    `;
+  // Pick a funny “face” depending on auth/admin
+  const mark = isAdmin ? '🧨' : (session ? '😼' : '🤡');
 
-  // Full-width, responsive layout:
   nav.innerHTML = `
     <div class="container-fluid">
-      <!-- Desktop -->
-      <div class="ma-desktop w-100 align-items-center justify-content-between gap-3 p-3">
-        <a class="ma-brand" href="/src/pages/home/index.html">🎭 Meme Arena</a>
+      <div class="w-100 d-flex align-items-center justify-content-between flex-wrap gap-3 p-3">
+        <a class="ma-brand" href="/src/pages/home/index.html">
+          <span class="ma-mark" aria-hidden="true">${mark}</span>
+          <span>
+            <div class="ma-title">Meme Arena</div>
+            <div class="ma-tag">serious app, silly content</div>
+          </span>
+        </a>
 
         <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
-          ${pillLinks}
+          ${pills}
         </div>
 
-        ${authBlockDesktop}
-      </div>
-
-      <!-- Mobile -->
-      <div class="ma-mobile p-3">
-        <div class="d-flex align-items-center justify-content-between gap-2">
-          <a class="ma-brand" href="/src/pages/home/index.html">🎭 Meme Arena</a>
-
-          <details class="ma-menu">
-            <summary class="ma-hamburger">☰ Menu</summary>
-
-            <div class="ma-menu-panel">
-              <div class="d-flex flex-wrap gap-2">
-                ${pillLinks}
-              </div>
-              ${authBlockMobile}
-            </div>
-          </details>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+          ${right}
         </div>
       </div>
     </div>
@@ -108,14 +81,6 @@ export async function renderNav(active = '') {
   const logoutBtn = document.getElementById('navLogout');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.href = '/src/pages/home/index.html';
-    });
-  }
-
-  const logoutBtnMobile = document.getElementById('navLogoutMobile');
-  if (logoutBtnMobile) {
-    logoutBtnMobile.addEventListener('click', async () => {
       await supabase.auth.signOut();
       window.location.href = '/src/pages/home/index.html';
     });
