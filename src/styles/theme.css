@@ -13,11 +13,11 @@
 }
 
 html, body{ min-height: 100%; }
+
+/* ✅ FORCE solid white background (wins over any older gradients) */
 body{
   color: var(--ink);
-  background: #ffffff; /* ✅ solid white */
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #ffffff !important;
 }
 
 /* nav */
@@ -30,12 +30,12 @@ body{
   border-bottom: 2px solid rgba(15,15,16,0.12);
 }
 
-/* ✅ menu ribbon: black bar */
+/* ✅ FORCE black ribbon bar */
 #appNav::before{
   content:"";
   display:block;
-  height: 12px;          /* thicker, feels like a real ribbon */
-  background: #0f0f10;   /* solid black */
+  height: 12px;
+  background: #0f0f10 !important;
 }
 
 /* brand */
@@ -57,14 +57,14 @@ body{
   gap: 2px;
 }
 
-/* ✅ colored fill per letter + black outline (kept) */
+/* ✅ colored fill per letter + thick black outline */
 .ma-letter{
   display: inline-block;
   color: var(--neonG); /* overridden below */
   -webkit-text-stroke: 3px rgba(15,15,16,0.90);
   paint-order: stroke fill;
 
-  /* subtle neon glow only as detail */
+  /* subtle neon detail only */
   text-shadow:
     2px 2px 0 rgba(15,15,16,0.14),
     0 0 8px rgba(57,255,20,0.10),
@@ -79,7 +79,7 @@ body{
 .ma-letter:nth-child(odd){ transform: translateY(1px); }
 .ma-letter:nth-child(even){ transform: translateY(-1px); }
 
-/* nav links (clean text) */
+/* nav links */
 .ma-navlinks{
   width: 40%;
   display:flex;
@@ -106,12 +106,12 @@ body{
   outline: 2px solid rgba(15,15,16,0.12);
 }
 
-/* ✅ make navbar right side (email + buttons) readable on white + add neon micro-accent */
+/* make muted text readable on white */
 .text-muted.small{
   color: rgba(15,15,16,0.55) !important;
 }
 
-/* cards (sticker-ish but clean) */
+/* cards */
 .card{
   background: var(--card);
   border: 2px solid rgba(15,15,16,0.18);
@@ -129,7 +129,10 @@ body{
 }
 
 /* buttons */
-.btn{ border-radius: 14px; font-weight: 900; }
+.btn{
+  border-radius: 14px;
+  font-weight: 900;
+}
 .btn-primary{
   background: linear-gradient(90deg, var(--neonG), var(--neonB));
   border: 2px solid rgba(15,15,16,0.18);
@@ -173,7 +176,7 @@ body{
   font-weight: 900;
   font-size: 12px;
   letter-spacing: 0.6px;
-  color: #0f0f10;
+  color: var(--ink);
   background: linear-gradient(90deg, var(--neonG), var(--neonP));
   border: 2px solid rgba(15,15,16,0.18);
   box-shadow: 4px 4px 0 rgba(15,15,16,0.10);
