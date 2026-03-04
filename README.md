@@ -165,10 +165,3 @@ Shared logic:
 Scripts and dependencies (for example):
 - npm run dev
 - npm run build
-
----
-
-## 8) Data Cleanup Note (Optional)
-If deleting a meme manually via Supabase dashboard:
-- Delete the row from the memes table
-- Delete the corresponding image file from Storage bucket `memes` using the image_path value
