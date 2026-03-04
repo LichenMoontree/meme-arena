@@ -12,8 +12,8 @@
     <main class="container py-4">
       <section class="ma-hero p-4 p-md-5 mb-4">
         <div class="row g-4 align-items-center">
-          <!-- LEFT -->
-          <div class="col-12 col-lg-7">
+          <!-- LEFT (was 7) -->
+          <div class="col-12 col-lg-6">
             <div class="d-flex flex-wrap gap-2 mb-3">
               <span
                 class="badge rounded-pill"
@@ -49,14 +49,15 @@
             </div>
           </div>
 
-          <!-- RIGHT: bigger image -->
-          <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end">
+          <!-- RIGHT (was 5) -->
+          <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end">
             <img
               src="/assets/puking%20rainbow.png"
               alt="Hero meme"
               style="
                 display:block;
-                width: min(920px, 100%);
+                width: 100%;
+                max-width: 520px;   /* increase if you want even bigger */
                 height: auto;
               "
             />
@@ -64,7 +65,7 @@
         </div>
       </section>
 
-      <p id="sbStatus" class="text-muted mb-3">Loading…</p>
+      <p id="sbStatus" class="text-muted mb-3"></p>
 
       <div id="feedSection">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
