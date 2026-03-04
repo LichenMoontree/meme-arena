@@ -3,21 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meme Arena | Admin</title>
+    <title>Battlememe | Admin</title>
   </head>
 
   <body>
     <nav id="appNav"></nav>
 
     <main class="container py-4">
-      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-        <div>
-          <h1 class="h4 mb-0">Admin Queue</h1>
-          <div class="text-muted small">Approve or reject incoming memes.</div>
-        </div>
-      </div>
+      <!-- Header panel -->
+      <section
+        class="p-4 p-md-5 mb-4"
+        style="
+          border: 2px solid rgba(15,15,16,0.18);
+          border-radius: 22px;
+          background: rgba(255,255,255,0.96);
+          box-shadow: 8px 8px 0 rgba(15,15,16,0.10);
+        "
+      >
+        <div class="d-flex align-items-start justify-content-between flex-wrap gap-3">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span
+                class="badge rounded-pill"
+                style="background: rgba(255,43,214,0.10); color:#0f0f10; border:1px solid rgba(15,15,16,0.18);"
+              >
+                🧑‍⚖️ Moderator mode
+              </span>
+              <span
+                class="badge rounded-pill"
+                style="background: rgba(15,15,16,0.06); color:#0f0f10; border:1px solid rgba(15,15,16,0.18);"
+              >
+                ⚡ Fast approvals
+              </span>
+            </div>
 
-      <div id="queue"></div>
+            <h1 class="display-6 m-0" style="font-weight: 950; color:#0f0f10;">
+              Admin Queue
+            </h1>
+            <p class="mt-2 mb-0 text-muted" style="max-width: 60ch;">
+              Approve the good stuff, reject the cringe. Your decisions shape the chaos.
+            </p>
+          </div>
+
+          <div class="text-muted small" style="align-self: center;">
+            Tip: approve = visible on Home • reject = hidden from feed
+          </div>
+        </div>
+      </section>
+
+      <!-- Queue panel -->
+      <section
+        class="p-4"
+        style="
+          border: 2px solid rgba(15,15,16,0.12);
+          border-radius: 18px;
+          background:
+            radial-gradient(1200px 300px at 10% 0%, rgba(57,255,20,0.06), transparent 55%),
+            radial-gradient(900px 300px at 90% 0%, rgba(0,229,255,0.05), transparent 55%),
+            #ffffff;
+          box-shadow: 6px 6px 0 rgba(15,15,16,0.08);
+        "
+      >
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <div class="h5 m-0">Pending memes</div>
+          <div class="text-muted small">Approve / Reject</div>
+        </div>
+
+        <div id="queue"></div>
+      </section>
     </main>
 
     <script type="module" src="./page.js"></script>
