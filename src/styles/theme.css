@@ -107,13 +107,13 @@ body{
   color: rgba(255,255,255,0.70) !important;
 }
 
-/* ✅ Global buttons: rounded + bold */
+/* ✅ Global buttons */
 .btn{
   border-radius: 14px;
   font-weight: 900;
 }
 
-/* ✅ GLOBAL primary buttons = neon gradient (fixes all the blue buttons) */
+/* ✅ GLOBAL primary buttons = neon gradient */
 .btn-primary{
   background: linear-gradient(90deg, var(--neonG), var(--neonB)) !important;
   border: 2px solid rgba(15,15,16,0.12) !important;
@@ -123,13 +123,6 @@ body{
 .btn-primary:hover{
   filter: brightness(1.03);
   transform: translateY(-1px);
-}
-
-/* ✅ GLOBAL success buttons (if any page uses btn-success) */
-.btn-success{
-  background: linear-gradient(90deg, var(--neonG), var(--neonB)) !important;
-  border: 2px solid rgba(15,15,16,0.12) !important;
-  color: #0f0f10 !important;
 }
 
 /* Outline buttons on white pages */
@@ -142,7 +135,7 @@ body{
   background: rgba(15,15,16,0.04) !important;
 }
 
-/* ✅ Navbar button variants stay readable on black */
+/* Navbar button variants stay readable on black */
 #appNav .btn-outline-primary{
   border: 2px solid rgba(255,255,255,0.35) !important;
   color: #ffffff !important;
@@ -195,6 +188,46 @@ body{
 
 .badge{ font-weight: 800; }
 
-/* keep hero CTA classes (harmless; same look as btn-primary now) */
-.ma-cta{ }
-.ma-cta-outline{ }
+/* ✅ HERO CTA styles (explicit) */
+.ma-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 14px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--neonG), var(--neonB));
+  color: #0f0f10;
+  border: 2px solid rgba(15,15,16,0.12);
+  box-shadow: 0 0 18px rgba(57,255,20,0.12), 0 0 14px rgba(0,229,255,0.10);
+}
+.ma-cta:hover{
+  color: #0f0f10;
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+/* white button with neon gradient stroke */
+.ma-cta-outline{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 14px;
+  font-weight: 900;
+  color: #0f0f10;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, var(--neonG), var(--neonB)) border-box;
+  border: 2px solid transparent;
+}
+.ma-cta-outline:hover{
+  background:
+    linear-gradient(rgba(15,15,16,0.02), rgba(15,15,16,0.02)) padding-box,
+    linear-gradient(90deg, var(--neonG), var(--neonB)) border-box;
+  color: #0f0f10;
+  transform: translateY(-1px);
+}
